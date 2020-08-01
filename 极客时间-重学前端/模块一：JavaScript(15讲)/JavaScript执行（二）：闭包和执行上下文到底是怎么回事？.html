@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+/*
+var b;
+void function() {
+    var env = {
+        b: 1
+    };
+    b = 2;
+    console.log('In function b:', b);
+    with(env) {
+        var b = 3;
+        console.log("In with b: ", b);
+    }
+}();
+
+console.log("Global b:", b);
+*/
+
+var iframe1 = document.createElement('iframe')
+document.documentElement.appendChild(iframe1)
+iframe1.src = "javascript:var b = {};"
+
+var b1 = iframe1.contentWindow.b;
+var b2 = {};
+
+console.log(typeof b1, typeof b2);
+console.log(b1 instanceof Object, b2 instanceof Object);
+
+</script>
+</body>
+</html>

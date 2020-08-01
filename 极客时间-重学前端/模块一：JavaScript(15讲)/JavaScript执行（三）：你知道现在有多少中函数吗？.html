@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+function showThis() {
+    console.log(this);
+}
+
+var o = {
+    showThis: showThis,
+}
+
+showThis()
+o.showThis()
+*/
+
+/*
+const showThis = () => {
+    console.log(this);
+}
+
+var o = {
+    showThis: showThis
+}
+
+showThis()
+o.showThis()
+*/
+
+/*
+class C {
+    showThis() {
+        console.log(this);
+    }
+}
+
+var o = new C();
+var showThis = o.showThis;
+showThis()
+o.showThis()
+*/
+
+/*
+"use strict"
+function showThis() {
+    console.log(this);
+}
+
+var o = {
+    showThis: showThis
+}
+
+showThis()
+o.showThis()
+*/
+
+var o = {}
+o.foo = function foo() {
+    console.log(this);
+    return () => {
+        console.log(this);
+        return () => console.log(this);
+    }
+}
+
+o.foo()()();
+</script>
+</body>
+</html>
