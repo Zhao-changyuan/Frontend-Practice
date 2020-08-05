@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<script>
-/*
-var token = [];
+/** 
+语法定义也叫语法产生式
+<Expression> ::=
+    <AdditiveExpression><EOF>
 
+<AdditiveExpression> ::=
+    <MUltiplicativeExpression>
+    |<AdditiveExpression><+><Number>
+    |<AdditiveExpression><-><Number>
+
+<MUltiplicativeExpression> ::=
+    <Number>
+    |<MUltiplicativeExpression><*><Number>
+    |<MUltiplicativeExpression></><Number>
+
+语法分析：LL
+LL 语法分析根据每一个产生式来写一个函数。
+*/
+
+// 词法分析，状态机
+// 用函数表示状态，用if表示状态的迁移关系，用return值表示下一个状态。
+var token = [];
 const start = char => {
     if (char === '1'
         || char === '2'
@@ -26,10 +36,10 @@ const start = char => {
         return inNumber;
     }
 
-    if (char === '+'
-        || char === '-'
-        || char === '*'
+    if (char === '*'
         || char === '/'
+        || char === '+'
+        || char === '-'
     ) {
         emmitToken(char, char);
         return start;
@@ -63,56 +73,15 @@ const inNumber = char => {
         token = [];
         return start(char);
     }
-}
+};
 
 function emmitToken(type, value) {
     console.log(value);
 }
 
-var input = "1024 + 2 * 256"
+/* var input = "1024 + 2 * 256";
 var state = start;
-
-for (var c of input.split('')) {
-    state = state(c)
+for(var c of input.split('')) {
+    state = state(c);
 }
-
-state(Symbol('EOF'))
-*/
-
-var tokens = [{
-    type: "Number",
-    value: "1024"
-}, {
-    type: "+",
-    value: "+"
-}, {
-    type: "Number",
-    value: "2"
-}, {
-    type: "*",
-    value: "*"
-}, {
-    type: "Number",
-    value: "256"
-}, {
-    type: "EOF"
-}];
-
-function AdditiveExpression(source) {
-    if (source[0].type === "MultiplicativeExpression"){
-        let node = {
-            type: "AdditiveExpression",
-            children: [source[0]]
-        };
-
-        source[0] = node;
-        return node;
-    }
-}
-
-function MultiplicativeExpression() {
-
-}
-</script>
-</body>
-</html>
+state(Symbol('EOF')); */
