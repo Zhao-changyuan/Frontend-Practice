@@ -129,3 +129,85 @@ async function* foo() {
 for await (let e of foo()) {
     console.log(e);
 } */
+
+/* const a = 2;
+if (true) {
+    console.log(a);
+    const a = 1;
+} */
+
+/* const a = 2;
+if (true) {
+    console.log(a);
+    class a {
+
+    }
+} */
+
+/* class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    // Getter
+    get area() {
+        return this.calcArea();
+    }
+
+    // Method
+    calcArea() {
+        return this.height * this.width;
+    }
+} */
+
+/* function foo() {
+
+}
+
+function* foo1() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+async function foo2() {
+    await sleep(3000);
+    yield 1;
+} */
+
+/* function foo(a = 1, ...other) {
+    console.log(a, other);
+}
+
+foo( 34, 1, 2, 3, 4) */
+/* 'abc';
+123;
+null;
+true;
+false;
+({});
+(function(){});
+(class{ });
+[];
+/abc/g;
+this;
+myVar; */
+
+/* class Cls {
+    constructor(n) {
+        console.log('cls', n);
+        return class {
+            constructor(n) {
+                console.log('returned', n);
+            }
+        }
+    }
+}
+
+new (new Cls(1)); */
+
+/* a.b(c);
+super(); */
+
+a = b, b = 1, null;

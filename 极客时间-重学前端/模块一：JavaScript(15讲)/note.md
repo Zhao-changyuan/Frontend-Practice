@@ -124,5 +124,85 @@ for in循环枚举对象的属性，这里体现了属性的enumerable特征。
 
 ## let 和 const
 let和const的作用范围是if、for等结构型语句。
+let和const声明虽然看上去是执行到了才会生效，但是实际上，他们还是会被预处理。如果当前作用域内有声明，就无法访问到外部的变量。
+
+## class 声明
+它的声明特征跟const和let类似，都是作用域块级作用域，预处理阶段则会屏蔽外部变量。
+
+以目前的兼容性，class中的属性只能写在构造函数中。
+
+需要注意，class默认内部的函数定义都是strict模式的。
+
+## 函数声明
+
+# 第14讲：JavaScript语法（三）：什么是表达式语句？
+
+## 什么是表达式语句
+表达式语句实际上就是一个表达式，它是由运算符连接变量或者直接量构成的。
+
+一般来说，我们的表达式语句要么是函数调用，要么是赋值，要么是自增、自减，否则表达式计算的结果没有任何意义。
+
+## PrimaryExpression 主要表达式
+Primary Expression包含了各种“直接量”，直接量就是直接用某种语法写出来的具有特定类型的值。
+
+JavaScript还能够以直接量的形式定义对象，针对函数、类、数组、正则表达式等特殊对象类型。
+
+需要注意的是，在语法层面，function、{和class开头的表达式语句与声明语句有语法冲突，所以，我们要想使用这样的表达式，必须加上括号来回避语法冲突。
+
+任何表达式加上圆括号，都被认为是Primary Expression，这个机制使得圆括号成为改变运算符优先顺序的手段。
+
+## MemberExpression 成员表达式
+Member Expression 通常是用于访问对象成员的。
+a.b;
+a['b'];
+new.target;
+super.b;
+f`a${b}c`;
+new Cls();
+
+## NewExpression NEW 表达式
+Member Expression加上new就是New Expression。
+
+## CallExpression 函数调用表达式
+他的基本形式是Member Expression后加一个括号里的参数列表。
+
+## LeftHandSideExpression 左值表达式
+New Expression和 Call Expression统称为LeftHandSideExpression，左值表达式。
+直观地讲，左值表达式就是可以放到等号左边的表达式。
+
+## AssignmentExpression 赋值表达式
+
+## Expression 表达式
+赋值表达式可以构成Expression表达式的一部分。在JavaScript中，表达式就是用逗号运算符连接的赋值表达式。
+
+在很多场合，都不允许使用带逗号的表达式。
+
+# 第15讲：JavaScript语法（四）：新加入的**运算符，哪里有些不一样？
+## 更新表达式 UpdateExpression
+-- a;
+++ a;
+a ++;
+a --;
+
+## 一元运算表达式 UnaryExpression
+更新表达式搭配一元运算符，可以形成一元运算符表达式。
+```javascript
+delete a.b;
+void a;
+typeof a;
+- a;
+~ a; 
+! a;
+await a;
+```
+
+
+
+
+
+
+
+
+
 
 
