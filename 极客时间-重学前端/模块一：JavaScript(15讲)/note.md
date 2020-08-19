@@ -196,9 +196,64 @@ typeof a;
 await a;
 ```
 
+## 乘方表达式 ExponentiationExpression
+```javascript
+++i ** 30
+2 ** 30 // 正确
+-2 ** 30 // 错误
+```
+**是右结合的。
 
+```javascript
+4 ** 3 ** 2
+// 实际上它是这样被运算的
+4 ** (3 ** 2)
+```
+## 乘法表达式 MultiplicativeExpression
+```javascript
+*
+/
+%
+```
 
+## 加法表达式 AdditiveExpression
+```javascript
++
+-
+```
 
+## 位移表达式 ShiftExpression
+在JavaScript中，二进制操作整数不能提高性能，位移运算这里也仅仅是作为一种数学运算存在，这些运算存在的意义也仅仅是照顾C系语言用户的习惯了。
+
+## 关系表达式 RelationalExpression
+```javascript
+<=
+>=
+<
+>
+instanceof
+in
+```
+务必不要用数学上的定义去理解这些运算符。
+
+## 相等表达式 EqualityExpression
+类型不同的变量比较时==运算只有三条规则：
+* undefined与null相等；
+* 字符串和bool都转为数字再比较；
+* 对象转成primitive类型再比较；
+
+不太符合直觉的两点：
+* 一个是即使字符串与boolean比较，也都要转换成数字；
+* 另一个是对象如果转换成primitive类型跟等号另一边类型恰好相同，则不需要再转换成数字；
+建议，仅在确认==发生在Number和String类型之间时使用。
+
+## 位运算表达式
+按位或运算常常被用在一种叫做Bitmask的技术上。BitMask相当于使用一个整数来当做多个布尔型变量，现在已经不太提倡了。
+
+## 逻辑与表达式和逻辑或表达式
+这里需要注意的是，这两种表达式都不会做类型转换，所以尽管是逻辑运算，但是最终的结果可能是其他类型。
+
+## 条件表达式 ConditionExpression
 
 
 

@@ -210,4 +210,16 @@ new (new Cls(1)); */
 /* a.b(c);
 super(); */
 
-a = b, b = 1, null;
+// a = b, b = 1, null;
+
+// console.log(4 ** 3 ** 2);
+// console.log(Number('true'));
+
+/* console.log(false == '0');
+console.log(true == 'true');
+console.log([] == 0);
+console.log([] == false);
+console.log(new Boolean('false') == false); */
+
+console.log(false || 1);
+console.log(true && undefined);
