@@ -110,3 +110,25 @@ only是一个Node.js模块，用于返回对象的白名单属性，尤其适用
 
 动态类型一时爽，代码重构火葬场。
 
+长远来看，TypeScript应该是真正的赢家。
+
+#### 4.4.3 更好的npm替代品——Yarn
+
+```shell
+$ npm install --global yarn
+$ yarn init
+$ yarn add [package]
+$ yarn add [package]@[version]
+$ yarn add [package]@[tag]
+$ yarn upgrade [package]
+$ yarn upgrade [package]@[version]
+$ yarn upgrade [package]@[tag]
+$ yarn remove [package]
+$ yarn
+$ yarn install
+```
+
+#### 4.4.4 多模块管理器Lerna
+
+Lerna是专门用于管理Node.js多模块的工具。
+
