@@ -1,10 +1,7 @@
+var exports = module.exports = {};
 
-var exports = module.exports = {}
-
-exports.sayHelloEnglish = function() {
-    return 'Hello';
+exports.sayHelloInEnglish = function() {
+    return 'HELLO'
 }
 
-exports.sayHelloChinese = function() {
-    return '你好';
-}
+exports.sayHelloInChinese = () => '你好'
