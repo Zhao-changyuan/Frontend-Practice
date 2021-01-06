@@ -1,45 +1,69 @@
 
 
-/* function getValue() {
-    return 1;
+/* console.log(typeof null);
+var num = 0;
+
+for (const key in null) {
+    num++;
+    console.log(key);
 }
 
-var aObject = {
-    name: 'Object Loteral',
-    value: 123,
-    getName: function() {
-        return this.name
-    },
-    getValue,
-    get name2() {
-        return 'name: ' + this.name;
-    }
-} */
+console.log(num); */
 
-/* var arr = [, [,,[,,,'abc']]];
-console.log(arr[1][2][3]);
-
-var {1: {2: {3: x}}} = arr;
-console.log(x); */
-
-/* class MyObject extends function x() {xyz = 123;} {
-
-}
-new MyObject; */
-
-function MyObject() {
-    console.log('Constructing...');
+/* var num = 0;
+for (var n in Object.prototype) {
+    num++;
 }
 
-MyObject.prototype.aName = 'value';
-MyObject.prototype.aMethod = function() {
-    console.log('aMethod');
-};
+console.log(num); */
 
-var a = new MyObject();
-var b = new MyObject();
-console.log(a.aName);
-console.log(b.aName);
-a.aName = 'changyuan'
-console.log(a.aName);
-console.log(b.aName);
+/* function MyObject() {}
+
+MyObject.prototype.value = 'abc'
+
+var obj1 = new MyObject();
+var obj2 = new MyObject();
+
+obj2.value = 10;
+console.log(obj1.value);
+console.log(obj2.value); */
+
+/* var obj1 = new Object;
+var obj2 = new Object;
+
+Object.prototype.value = 'abc';
+console.log(obj1.value);
+console.log(obj2.value);
+
+console.log(Object.getOwnPropertyNames(obj2));
+
+obj2.value = '10';
+console.log(obj1.value);
+console.log(obj2.value);
+console.log(Object.getOwnPropertyNames(obj2)); */
+
+/* function asConstructor(f) {
+    return Object.assign(f, {
+        prototype: {'constructor': f}
+    });
+}
+
+
+function MyObject() {}
+console.log(MyObject.prototype.constructor === MyObject);
+delete MyObject.prototype.constructor;
+console.log(MyObject.prototype.constructor === Object); */
+
+var empty = {};
+
+var proto = Object.getPrototypeOf(empty);
+var props = Object.getOwnPropertyNames(empty);
+
+console.log(proto === Object.prototype);
+console.log(props.length);
+
+var propsInChain = Object.getOwnPropertyDescriptors(Object.prototype);
+console.log(Object.keys(propsInChain).length);
+
+var enumberableMembers = Object.values(propsInChain).filter(descriptor => descriptor.enumberable);
+console.log(enumberableMembers.length);

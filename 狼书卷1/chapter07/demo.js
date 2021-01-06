@@ -133,7 +133,7 @@ fs.readFile('../.vscode/launch.json', (err, data) => {
     console.log(data.toString());
 }) */
 
-var fs = require('fs');
+/* var fs = require('fs');
 
 function hello(file) {
     return new Promise((resolve, reject) => {
@@ -151,4 +151,5 @@ hello('../.vscode/launch.json').then(function(data) {
     console.log('promise result = ' + data);
 }).catch(function(err) {
     console.log(err);
-});
+}); */
+
