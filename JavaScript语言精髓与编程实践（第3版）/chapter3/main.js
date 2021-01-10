@@ -1,69 +1,187 @@
 
-
-/* console.log(typeof null);
-var num = 0;
-
-for (const key in null) {
-    num++;
-    console.log(key);
+/* var obj = {
+    [Symbol.toStringTag]: 'YourObjectClassname'
 }
 
-console.log(num); */
+console.log(obj.toString()); */
 
-/* var num = 0;
-for (var n in Object.prototype) {
-    num++;
+/* var obj = {
+    [Symbol.toPrimitive](hint) {
+        if (hint === 'number') return NaN;
+        return 'invalid';
+    }
 }
 
-console.log(num); */
+console.log('' + obj);
+console.log(+obj); */
+
+/* class MyObject {
+    static [Symbol.hasInstance](obj) {
+        return super[Symbol.hasInstance](obj) ||
+            (obj && obj.className === 'MyObject');
+    }
+}
+
+var obj = {
+    className: 'MyObject'
+};
+var obj1 = new MyObject;
+console.log(obj instanceof MyObject);
+console.log(obj1 instanceof MyObject);
+
+var fakedBase = new Object;
+fakedBase[Symbol.hasInstance] = (obj) => 'className' in obj;
+console.log(obj instanceof fakedBase);
+
+var atom = Object.create(null);
+console.log(atom instanceof Object);
+atom.className = '[META]';
+console.log(new Object instanceof fakedBase);
+console.log(atom instanceof fakedBase);
+console.log({className: ''} instanceof fakedBase); */
+
+/* var f = new Function;
+var constructor = null;
+
+with(f.prototype) {
+    console.log(f === constructor);
+}
+
+f.prototype[Symbol.unscopables] = {
+    constructor: true
+};
+
+with(f.prototype) {
+    console.log(f === constructor);
+} */
+
+/* var obj = [1, 2, 3];
+
+obj[Symbol.isConcatSpreadable] = false;
+var arr = [0].concat(obj);
+console.log(arr.length);
+console.log(arr[1]);
+
+var arr = [0].concat([1, 2, 3]);
+console.log(arr.length);
+console.log(arr[1]);
+
+console.log([0].concat(new Array(400)).concat(401));
+console.log([0].concat({ length: 400, [Symbol.isConcatSpreadable]: true }).concat(401)); */
+
+/* var separator = {};
+
+separator[Symbol.split] = function(str, limit) {
+    return str.split(' ', limit);
+};
+
+var str = 'hello world';
+console.log(str.split(separator)); */
+
+/* let arr = [1, 2, 3, 4, 5];
+var newArray = arr.slice(0, 2);
+
+console.log(arr.constructor[Symbol.species]); */
+
+/* var f = () => {};
+var MyObject = new Proxy(f, {
+    construct: function() {
+        console.log('try custom constructor...');
+        return new Object;
+    }
+})
+
+new MyObject(); */
+
+/* var obj = new Object;
+
+var target = new Proxy(obj, {
+    getOwnPropertyDescriptor: function(target, key) {
+        console.log('[[GetOwnProperty]] on target >>', ...arguments);
+        return Reflect.getOwnPropertyDescriptor(...arguments);
+    }
+});
+
+var proxy = new Proxy(target, {
+    getOwnPropertyDescriptor(target, key) {
+        console.log('[[GetOwnProperty]] on proxy >>', ...arguments);
+        return Reflect.getOwnPropertyDescriptor(...arguments);
+    },
+    defineProperty(target, key, desc, receiver) {
+        console.log('[[DefineOwnProperty]] on proxy >>', ...arguments);
+        return Reflect.defineProperty(...arguments);
+    }
+});
+
+proxy.n1 = 100
+console.log(proxy.n1);
+ */
 
 /* function MyObject() {}
 
-MyObject.prototype.value = 'abc'
+var obj = new Object;
+var obj2 = new MyObject;
 
-var obj1 = new MyObject();
-var obj2 = new MyObject();
+console.log(Object.isExtensible(Object.prototype));
 
-obj2.value = 10;
-console.log(obj1.value);
-console.log(obj2.value); */
+Object.prototype.x = 100;
+console.log(obj.x);
+console.log(obj2.x); */
 
-/* var obj1 = new Object;
-var obj2 = new Object;
+/* function intrudeOnPrototype(Class, handler) {
+    var orginal = Object.getPrototypeOf(Class.prototype);
+    var target = Object.create(orginal);
+    var { proxy, revoke } = Proxy.revocable(target, handler);
+    Object.setPrototypeOf(Class.prototype, proxy);
 
-Object.prototype.value = 'abc';
-console.log(obj1.value);
-console.log(obj2.value);
-
-console.log(Object.getOwnPropertyNames(obj2));
-
-obj2.value = '10';
-console.log(obj1.value);
-console.log(obj2.value);
-console.log(Object.getOwnPropertyNames(obj2)); */
-
-/* function asConstructor(f) {
-    return Object.assign(f, {
-        prototype: {'constructor': f}
-    });
+    return () => revoke(Object.setPrototypeOf(Class.prototype, orginal));
 }
 
+var str = new String('OldString');
+var recovery = intrudeOnPrototype(String, {
+    get: function(target, prop) {
+        if (prop === 't') return 100;
+        return Reflect.get(...arguments);
+    }
+});
+var str2 = new String('NewString');
 
-function MyObject() {}
-console.log(MyObject.prototype.constructor === MyObject);
-delete MyObject.prototype.constructor;
-console.log(MyObject.prototype.constructor === Object); */
+console.log(Object.getPrototypeOf(str) === Object.getPrototypeOf(str2));
+console.log(str.t);
+console.log(str2.t);
 
-var empty = {};
+console.log((new Object).t);
+recovery();
+console.log(str.t);
+console.log(str2.t); */
 
-var proto = Object.getPrototypeOf(empty);
-var props = Object.getOwnPropertyNames(empty);
+class Meta extends null {
+    constructor() {
+        return Object.setPrototypeOf(class extends null {
+            constructor() {
+                return Object.create(new.target.prototype);
+            }
 
-console.log(proto === Object.prototype);
-console.log(props.length);
+            static [Symbol.hasInstance](obj) {
+                return Object.prototype.isPrototypeOf.call(this.prototype, obj);
+            }
+        }, new.target);
+    }
 
-var propsInChain = Object.getOwnPropertyDescriptors(Object.prototype);
-console.log(Object.keys(propsInChain).length);
+    static [Symbol.hasInstance](obj) {
+        return Object.prototype.isPrototypeOf.call(this, obj);
+    }
+}
 
-var enumberableMembers = Object.values(propsInChain).filter(descriptor => descriptor.enumberable);
-console.log(enumberableMembers.length);
+Object.setPrototypeOf(Meta, null);
+class MetaClass extends Meta {}
+class MetaObject extends new MetaClass {}
+
+console.log(MetaObject instanceof MetaClass);
+console.log(MetaClass instanceof Meta);
+
+var obj = new MetaObject();
+console.log(obj instanceof MetaObject);
+
+console.log(obj instanceof Object);
+console.log(typeof obj);
