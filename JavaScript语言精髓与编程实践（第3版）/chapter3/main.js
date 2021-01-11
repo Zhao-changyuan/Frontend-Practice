@@ -155,7 +155,7 @@ recovery();
 console.log(str.t);
 console.log(str2.t); */
 
-class Meta extends null {
+/* class Meta extends null {
     constructor() {
         return Object.setPrototypeOf(class extends null {
             constructor() {
@@ -184,4 +184,6 @@ var obj = new MetaObject();
 console.log(obj instanceof MetaObject);
 
 console.log(obj instanceof Object);
-console.log(typeof obj);
+console.log(typeof obj); */
+
+
