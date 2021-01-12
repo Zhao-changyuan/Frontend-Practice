@@ -67,8 +67,17 @@ switch(x) {
 
 } */
 
-try {
+/* try {
     throw { message: 'A Error', code: 1234 };
 } catch ({ message, code }) {
     console.log(`${code}: ${message}`);
-}
+} */
+
+let x = 100;
+y = 200;
+
+console.log(x, y);
+console.log(global.x);
+console.log(global.y);
+console.log(global);
+console.log((new Function('return this'))());
