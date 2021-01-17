@@ -143,3 +143,26 @@ wx.switchTab常用属性：
 | complete | function |                                                              |
 
 ##### 2. wx.nevigateTo和wx.redirectTo
+
+wx.navigateTo用于跳转到应用内的某个页面，且保留当前页面。跳转页面后，单击左上角可以返回到上一个页面。需要注意的是，wx.navigateTo只能跳转到非标签页。另外，wx.navigateBack可以返回到原页面。
+
+wx.redirectTo用于跳转到应用内的某个页面，并且关闭当前页面，不能返回到上一个页面，只能跳转到非标签页面。
+
+##### 3.wx.reLaunch
+
+wx.reLaunch关闭所有页面，打开到应用内的某个页面。既能跳转到标签页，又能跳转到非标签页。
+
+##### 4.wx.chooseImage
+
+wx.chooseImage()方法从本地相册选择图片或使用相机拍照。
+
+##### 5.wx.chooseAddress
+
+wx.chooseAddress()方法调其用户编辑收货地址原生界面，并在编辑完成后返回用户选择的地址。
+
+##### 6.wx.makePhoneCall
+
+wx.makePhoneCall()方法用于拨打电话。
+
+#### 5.2.3 实现底部标签页切换
+
