@@ -10,7 +10,7 @@
 					<text>
 						{{item.title}}
 					</text>
-					<likes></likes>
+					<likes :item="item"></likes>
 				</view>
 				<view class="listcard-content__des">
 					<view class="listcard-content__des-label">
@@ -30,7 +30,7 @@
 					<text>
 						{{item.title}}
 					</text>
-					<likes></likes>
+					<likes :item="item"></likes>
 				</view>
 				<view class="listcard-image">
 					<view v-if="index < 3" class="listcard-image__item" v-for="(item1, index) in item.cover" :key="index">
@@ -58,7 +58,7 @@
 					<text>
 						{{item.title}}
 					</text>
-					<likes></likes>
+					<likes :item="item"></likes>
 				</view>
 				<view class="listcard-content__des">
 					<view class="listcard-content__des-label">
@@ -91,6 +91,7 @@
 		methods: {
 			open() {
 				console.log('打开详情')
+				this.$emit('click', this.item)
 			}
 		}
 	}

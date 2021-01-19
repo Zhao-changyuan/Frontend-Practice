@@ -33,6 +33,8 @@
 						name: '全部'
 					})
 					this.tabList = data
+				}).catch(error => {
+					console.error(error);
 				})
 			},
 			change(current) {

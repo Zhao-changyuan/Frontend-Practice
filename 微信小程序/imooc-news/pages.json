@@ -26,6 +26,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/home-search/home-search",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom" // 自定义导航栏
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

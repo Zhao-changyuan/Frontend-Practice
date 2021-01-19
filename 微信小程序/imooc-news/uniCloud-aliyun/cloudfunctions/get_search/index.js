@@ -7,19 +7,9 @@ const $ = db.command.aggregate
 exports.main = async (event, context) => {
 	// 接收分类
 	const {
-		user_id,
-		name,
-		page = 1,
-		pageSize = 10
+		value,
+		user_id
 	} = event
-	
-	let matchObj = {}
-	if (name !== '全部') {
-		matchObj = {
-			classify: name
-		}
-	}
-	
 	const userInfo = await db.collection('user').doc(user_id).get()
 	const article_likes_ids = userInfo.data[0].article_likes_ids
 	
@@ -30,20 +20,13 @@ exports.main = async (event, context) => {
 		.addFields({
 			is_like: $.in(['$_id', article_likes_ids])
 		})
-		.match(matchObj)
 		.project({
 			content: false,
 		})
-		.skip(pageSize * (page - 1)) // 每次跳过多少数据
-		.limit(pageSize) // 每次输出多少条
+		.match({
+			title: new RegExp(value)
+		})
 		.end();
-	
-	/* const list  = await db.collection('article')
-	.field({
-		// true表示返回这个字段
-		content: false,
-	})
-	.get() */
 	
 	
 	//返回数据给客户端
