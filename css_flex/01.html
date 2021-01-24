@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 550px;
+            height: 400px;
+            background-color: orange;
+            margin: 0 auto;
+
+            /* 开启flex布局：
+                flex：块级元素
+                inline-flex: 行内元素
+            */
+            display: flex;
+            /* flex-direction: 决定主轴的方向 */
+            /* row: 从左到右 */
+            /* row-reverse: 从右到左 */
+            /* column: 从上到下 */
+            /* column-reverse: 从下到上 */
+            flex-direction: row;
+
+            /* justify-content: 决定flex items在main axis方向上的对齐方式 */
+            /* flex-start: 与main start对齐 */
+            /* flex-end: 与main end对齐 */
+            /* center: 居中对齐 */
+            /* space-between: flex items间距相等，与main start和main end对齐 */
+            /* space-evenly: flex items间距相等，flex items和main start、main end之间的距离等于flex items之间的距离 */
+            /* space-around: flex items间距相等，flex items和main start、main end之间的距离等于flex items之间的距离的一半 */ 
+            /* justify-content: space-around; */
+
+            /* 4. align-items: 决定了flex items在交叉轴上的对象方式 */
+            /* align-items: baseline; */
+
+            /* 5. 默认情况下，所有的flex items都会在同一行显示 */
+            /* flex-wrap: nowrap 默认值 */
+            /* nowrap: 不换行 */
+            /* wrap: 换行 */
+            /* flex-wrap: wrap-reverse ; */
+
+            /* 6. flex-flow: 缩写属性，是 flex-direction || flex-wrap */
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+
+            /* 7.align-centent: 决定多行的flex items在交叉轴上对齐方式 */
+            align-content: space-evenly;
+
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            color: #FFF;
+            text-align: center;
+        }
+
+        .item1 {
+            background-color: #f00;
+            /* height: 60px;
+            font-size: 50px; */
+        }
+
+        .item2 {
+            background-color: #0f0;
+            height: 150px;
+        }
+
+        .item3 {
+            background-color: #00F;
+            /* height: 120px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item item1">item1</div>
+        <div class="item item2">item2</div>
+        <div class="item item3">item3</div>
+        <div class="item item1">item4</div>
+        <div class="item item2">item5</div>
+        <div class="item item3">item6</div>
+        <div class="item item1">item7</div>
+        <div class="item item2">item8</div>
+        <div class="item item3">item9</div>
+    </div>
+</body>
+</html>
