@@ -768,7 +768,7 @@ console.log(f1 === f2); */
 
 MyFunc(); */
 
-var checker;
+/* var checker;
 
 function myFunc() {
     if(checker) {
@@ -787,5 +787,150 @@ function myFunc() {
     return arguments.callee;
 }
 
-myFunc()();
+myFunc()(); */
+
+/* function myFunc(num) {
+    myFunc = num + 1;
+}
+myFunc(10);
+
+console.log(typeof myFunc, myFunc); */
+
+/* var msg = (function myFunc(num) {
+    return myFunc = typeof myFunc;
+})(10) + ", and upvalue's type is: " + typeof myFunc;
+console.log(msg); */
+
+/* function foo(x) {
+    // "use strict";
+
+    eval(`
+        var y = 100;
+        console.log(y);
+    `);
+
+    console.log(typeof y);
+}
+
+foo(1); */
+
+/* var x = 100;
+
+y = '';
+
+eval('var z = 100');
+
+let canRemoveGlobalName = n => {
+    return Object.getOwnPropertyDescriptor(global, n) ? Object.getOwnPropertyDescriptor(global, n).configurable : false;
+}
+
+console.log(canRemoveGlobalName('x'));
+console.log(canRemoveGlobalName('y'));
+console.log(canRemoveGlobalName('z')); */
+
+/* for (var i = 0; i < 3; i++) {
+    let x;
+    console.log(typeof x);
+    console.log(x = i+1);
+} */
+
+/* var obj = { value: 200 };
+
+var value = 1000;
+with(obj) {
+    function foo() {
+        value *= 2;
+    }
+    foo();
+}
+
+console.log(obj.value);
+console.log(value); */
+
+
+/* function MyObject(obj) {
+    var foo = function() {
+
+    }
+
+    if (!obj) {
+        return;
+    }
+
+    obj.method = foo;
+}
+
+MyObject();
+
+MyObject(new Object());
+
+var obj = new Object();
+MyObject(obj); */
+
+/* function MyObject() {
+    function foo() {}
+
+    this.method = foo;
+}
+
+obj1 = new MyObject();
+obj2 = new MyObject();
+
+console.log(obj1.method === obj2.method); */
+
+/* var obj = new Object();
+for(var i = 0; i < 5; i++) {
+    obj['method' + i] = function() {}
+}
+
+console.log(obj.method2 === obj.method3); */
+
+/* var obj = new Object();
+var events = { m1: "clicked", m2: "changed" };
+
+for(e in events) {
+    obj[e] = function() {
+        console.log(events[e]);
+    }
+}
+
+console.log(obj.m1 === obj.m2);
+obj.m1();
+obj.m2(); */
+
+/* function foo(foo) {
+    var foo = foo + 1;
+    console.log(foo);
+}
+
+foo(100); */
+
+/* var value = 'this is global';
+
+function myFunc() {
+    var value = 'this is local';
+    var foo = new Function(`console.log(value);`);
+    foo();
+}
+
+myFunc(); */
+
+function myFunction(name) {
+    var context = [
+        "return 'function ", name, "()\\n",
+        "{\\n",
+        "   [custom function]",
+        "\\n}'"
+    ];
+
+    return new Function(context.join(''));
+}
+
+function aFunc() {}
+
+console.log(aFunc);
+
+aFunc.toString = myFunction('aFunc');
+console.log(aFunc);
+
 
