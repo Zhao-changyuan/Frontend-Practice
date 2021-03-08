@@ -123,7 +123,7 @@ console.log(+x); */
 
 // console.log(new String('6').valueOf());
 
-var x = {
+/* var x = {
     toString: () => '10',
     valueOf: () => -1
 };
@@ -133,4 +133,50 @@ console.log(Math.abs(x));
 
 console.log(1 + x);
 
-console.log("1" + x);
+console.log("1" + x); */
+
+/* class MyObject extends Object {
+    toString() {
+        return 'nothing'
+    }
+
+    valueOf() {
+        return 0;
+    }
+}
+
+var x = new MyObject;
+console.log(x);
+
+console.log(+x); */
+
+/* var x = new Boolean(false);
+
+console.log(x.valueOf());
+
+console.log(!!x);
+
+console.log('value is:', x);
+
+console.log(+x); */
+
+/* var x = new Number(100);
+console.log(+x);
+
+x.valueOf = () => 101;
+console.log(+x);
+
+x[Symbol.toPrimitive] = () => 0;
+console.log(+x);
+
+console.log(x);
+
+console.log(x.toString()); */
+
+var x= {};
+x.toString = () => new Object;
+x.valueOf = () => 0;
+
+console.log('string value:', String(x));
+console.log('number value:', Number(x));
+console.log('boolean value:', Boolean(x));
