@@ -187,4 +187,90 @@ console.log('00.22' * 10)
 
 console.log('.22' * '100.'); */
 
-console.log(+'9.9E5');
+// console.log(+'9.9E5');
+
+/* var x = Symbol(true), y = Symbol(true), z = Symbol(new Object);
+console.log(x === y); */
+
+/* var x = Symbol(), obj = Object(x);
+
+console.log(x === obj);
+
+console.log(x == obj); */
+
+/* var x = new Object;
+x.toString = () => '1e-10';
+x.valueOf = () => 1e10;
+
+console.log(parseInt(x));
+
+console.log(parseFloat(x));
+
+console.log(Number(x)); */
+
+/* var aArray = ['a', 'b', 'c', 'd'];
+console.log('1' in aArray);
+
+for (var i in aArray) {
+    console.log(i + '=> ' + aArray[i]);
+} */
+
+/* var arr = [1, 2, '345', , 12];
+
+var [x, y]= arr;
+console.log(x, y);
+
+console.log(['elements: ', ...arr]);
+
+var {0: x, 1: y, length} = arr;
+console.log(x, y, length);
+
+var x = {length: 100, ...arr};
+console.log(x.length + ' => ' + Object.keys(x)); */
+
+/* var arr = new Array(1000*10000);
+arr[1] = 3;
+arr[3] = 1;
+arr[5] = 5;
+arr[9999] = 9;
+
+function func(lv, rv) {
+    console.log(lv + ", " + rv);
+    return lv > rv ? 1 : (lv == rv ? 0 : -1);
+}
+arr.sort(func)
+
+var proxy = new Proxy(arr, {
+    ownKeys() {
+        console.log('TRY -> ownKeys()');
+        return Reflect.ownKeys(...arguments);
+    },
+    get(_, key) {
+        console.log('GET -> ', key);
+        return Reflect.get(...arguments);
+    }
+})
+
+arr.length = 30;
+proxy.sort();
+
+for (let x of proxy);
+
+for (let x in proxy); */
+
+/* var arr = [1, 2, 3];
+Object.defineProperty(arr, 'length', { writable: false });
+
+arr.pop(); */
+
+var getPropertyOwner = function f(obj, key) {
+    return !obj ? null
+        : obj.hasOwnProperty(key) ? obj
+        : f(Object.getPrototypeOf(obj), key);
+}
+
+var typedArr = new Int32Array;
+console.log(typedArr.hasOwnProperty('length'));
+
+var p = getPropertyOwner(typedArr, 'length');
+console.log(Object.getOwnPropertyDescriptor(p, 'length'));
