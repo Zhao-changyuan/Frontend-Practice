@@ -173,10 +173,18 @@ console.log(x);
 
 console.log(x.toString()); */
 
-var x= {};
+/* var x= {};
 x.toString = () => new Object;
 x.valueOf = () => 0;
 
 console.log('string value:', String(x));
 console.log('number value:', Number(x));
-console.log('boolean value:', Boolean(x));
+console.log('boolean value:', Boolean(x)); */
+
+/* console.log('0022' - 1);
+
+console.log('00.22' * 10)
+
+console.log('.22' * '100.'); */
+
+console.log(+'9.9E5');
