@@ -263,7 +263,7 @@ Object.defineProperty(arr, 'length', { writable: false });
 
 arr.pop(); */
 
-var getPropertyOwner = function f(obj, key) {
+/* var getPropertyOwner = function f(obj, key) {
     return !obj ? null
         : obj.hasOwnProperty(key) ? obj
         : f(Object.getPrototypeOf(obj), key);
@@ -273,4 +273,40 @@ var typedArr = new Int32Array;
 console.log(typedArr.hasOwnProperty('length'));
 
 var p = getPropertyOwner(typedArr, 'length');
-console.log(Object.getOwnPropertyDescriptor(p, 'length'));
+console.log(Object.getOwnPropertyDescriptor(p, 'length')); */
+
+/* var typedArr = new Int32Array(10);
+
+var elementSize = (new typedArr.constructor(1)).buffer.byteLength;
+
+console.log('length: ', typedArr.buffer.byteLength / elementSize); */
+
+/* var arr2 = Object.create(null, { length: { value: 0, writable: true } });
+
+var obj = { length: 0 };
+
+console.log(Array.prototype.push.call(arr2, ...'ABC'));
+
+console.log(arr2);
+
+arr2[Symbol.iterator] = Array.prototype[Symbol.iterator];
+
+console.log(...arr2);
+
+var f = new Function('return arguments[Symbol.iterator]'), iter = f();
+
+console.log(iter === arr2[Symbol.iterator]); */
+
+/* console.log(new Map([[NaN, 0], [NaN, 1]]))
+
+console.log(new Set([NaN, NaN])); */
+
+// console.log(new Set('wermcrewosfjend'));
+
+/* var x = new Set('123456asdf');
+
+var arr = Int32Array.from(x);
+
+console.log(arr); */
+
+
