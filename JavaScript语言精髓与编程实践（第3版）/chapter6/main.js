@@ -309,4 +309,113 @@ var arr = Int32Array.from(x);
 
 console.log(arr); */
 
+/* let arr = Object.getOwnPropertyNames(global).filter(key => Object
+    .getOwnPropertyDescriptor(global, key).writable);
+console.log(arr); */
 
+/* function f() {
+    console.log('enter f()');
+    const x = 1;
+    x = 2;
+} */
+
+/* function foo() {
+    abc = 100;
+}
+
+var x = 100;
+var obj = {x}; */
+
+/* var obj = {};
+
+obj = new Proxy(obj, {
+    set(target, key, value) {
+        if (key === 'x' && Object.getOwnPropertyDescriptor(target, key).configurable) {
+            return Reflect.defineProperty(target, key, {value});
+        }
+
+        return Reflect.set(target, key, value);
+    }
+})
+
+Object.defineProperty(obj, 'x', { value: 100, configurable: true });
+
+console.log(Object.getOwnPropertyDescriptor(obj, 'x').writable);
+
+obj.x = 2000;
+console.log(obj.x);
+
+console.log(Object.getOwnPropertyDescriptor(obj, 'x')) */
+
+/* var x = 'a'
+console.log(typeof x);
+
+x++
+console.log(typeof x, x); */
+
+/* try {
+    try {
+        throw { message: 'ERROR!', code: 100 }
+    } catch ({ message, code }) {
+        var message = 'NOTHING';
+        console.log(message, code);
+        
+    }
+} catch (e) {
+    e = {message: 'new error message'}
+    console.log(e);
+} */
+
+/* var x = 100;
+function foo(cond) {
+    console.log(x);
+    if (cond) {
+        var x = 1000;
+    } else {
+        function x() {
+
+        }
+    }
+    console.log(x);
+}
+
+foo(true)
+foo(false) */
+
+/* function MyObject() {}
+
+var obj1 = new MyObject()
+
+MyObject.prototype.type = 'MyObject';
+MyObject.prototype.value = 'test';
+
+var obj2 = new MyObject();
+
+MyObject.prototype = {
+    constructor: MyObject,
+    type: 'Bird',
+    fly: function() {}
+};
+
+var obj3 = new MyObject();
+
+console.log(obj1.type);
+console.log(obj2.type);
+console.log(obj3.type);
+
+console.log(obj1 instanceof MyObject);
+console.log(obj2 instanceof MyObject);
+console.log(obj3 instanceof MyObject); */
+
+var NativeObject = Object;
+
+Object = function() {
+
+}
+
+function MyObject() {
+
+}
+
+console.log(MyObject.prototype instanceof NativeObject);
+console.log(MyObject.prototype instanceof Object);
