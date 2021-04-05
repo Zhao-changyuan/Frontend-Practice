@@ -414,3 +414,7 @@ type属性的属性值及其描述如下：
 ##### 8.4.4 `<textarea>`文本域
 
 使用场景：当用户输入内容较多的情况下，我们就不能使用文本框表单了，此时我们可以使用`<textarea>`标签。
+
+### 9. 查阅文档
+
+MDN https://developer.mozilla.org/zh-CN/
