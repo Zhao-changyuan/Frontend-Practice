@@ -1,421 +1,322 @@
+/* var overrideDisabled = ([_, desc]) => !desc.configurable && !desc.writable;
+var toDesc = key => [key, Object.getOwnPropertyDescriptor(global, key)];
+var allDescriptor = Object.getOwnPropertyNames(global).map(toDesc);
 
-/* console.log(new Number(3));
+var allKey  =allDescriptor.filter(overrideDisabled).map(([key]) => key);
+console.log(allKey); */
 
-var values = [100, 'hello, world!', true];
-var types = { number: Number, string: String, boolean: Boolean };
-values.map(value => new types[typeof value](value))
-    .forEach(obj => console.log(typeof obj, obj)); */
-
-// console.log(new Object(3));
-
-/* var values = [1000, 'hello, world!', true, Symbol()];
-values.map(value => new Object(value))
-    .forEach(obj => console.log(typeof obj, obj)); */
-
-/* var x = 100;
-
-console.log(x instanceof Number);
-
-console.log('toString' in x); */
-
-/* var x = 100;
-Object.prototype.getSelf = function() {
-    return this;
+/* var isRewrited = function(obj, key) {
+    return obj.hasOwnProperty(key) && (key in Object.getPrototypeOf(obj));
 }
 
-var me = x.getSelf();
-console.log(typeof me, me); */
-
-/* Object.prototype.getSelf = function() {
-    return this;
+var isInherited = function(obj, key) {
+    return (key in obj) && !obj.hasOwnProperty(key);
 }
 
-Object.prototype.getClass = function() {
-    return this.constructor;
+var x = new String();
+console.log(isInherited(x, 'charAt'));
+
+console.log(String.prototype.hasOwnProperty('charAt'));
+console.log(isInherited(String.prototype, 'charAt'));
+
+x.charAt = new Function;
+console.log(isRewrited(x, 'charAt'));
+console.log(isInherited(x, 'charAt'));
+console.log('----------------------------');
+
+var getPropertyOwner = function f(obj, key) {
+    return !obj ? null
+    : obj.hasOwnProperty(key) ? obj 
+    : f(Object.getPrototypeOf(obj), key);
 }
 
-Object.prototype.getTypeof = function() {
-    return typeof this;
+console.log(isRewrited(x, 'charAt'));
+console.log(getPropertyOwner(x, 'charAt') === x);
+
+x.branew = 'Bran-new';
+
+console.log(isInherited(x, 'branew'));
+
+console.log(getPropertyOwner(Object.getPrototypeOf(x), 'branew')); */
+
+/* function MyObject() {
+
 }
 
-Object.prototype.getInstanceof = function() {
-    return this instanceof this.getClass();
-}
+MyObject.prototype.name = 'MyObject';
 
-var samples = [
-    '',
-    100,
-    true,
-    function() {},
-    {},
-    [],
-    /./
-];
-samples.push(Symbol());
+var obj1 = new MyObject();
+var obj2 = new MyObject();
 
-var getAttr = (v, v2, cls) => [
-    typeof v, v2.getTypeof(), v instanceof cls, v2.getInstanceof()
-];
+delete obj1.name;
+console.log(obj1.name);
 
-samples.map(v => [typeof v, getAttr(v, v.getSelf(), v.getClass())])
-.forEach(([metaName, attr]) => {
-    console.log(metaName, ':', attr);
-}); */
-
-/* var str = 'abc';
-str.toString = function() {
-    return '';
-}
-
-console.log(str);
-console.log(str.toString()); */
-
-/* var str = 'abcde';
-
-function newToString() {
-    return 'hello, world!';
-}
-
-function func(x) {
-    x.toString = newToString;
-}
-
-func(str);
-console.log(str); */
-
-/* [Number, String, Boolean].map(Class => new Class(null))
-.forEach(x => console.log(x)); */
-
-/* var x = new String('123');
-x.toString = function() {
-    return new Object;
-}
-
-x.valueOf = function() {
-    return new Object;
-}
-
-console.log(+x); */
-
-/* var typeHint, x = new String('123');
-var methods = ['toString', 'valueOf'];
-
-if (typeHint == 'number') {
-    methods = methods.reverse();
-}
-
-let result;
-for (let method of methods.map(key => x[key])) {
-    if (method  && method.call) {
-        result = method.call(x);
-
-        if (result === null || result instanceof Object) continue;
-        console.log('Ok, got value:', result);
-        break;
-    }
-}
-
-throw new TypeError('Cannot convert ... to primitive value'); */
-
-/* var x = new Object;
-x.valueOf  = x.toString = () => null;
-console.log(+x); */
-
-// console.log(new String('6').valueOf());
-
-/* var x = {
-    toString: () => '10',
-    valueOf: () => -1
-};
-
-console.log(parseInt(x));
-console.log(Math.abs(x));
-
-console.log(1 + x);
-
-console.log("1" + x); */
-
-/* class MyObject extends Object {
-    toString() {
-        return 'nothing'
-    }
-
-    valueOf() {
-        return 0;
-    }
-}
-
-var x = new MyObject;
-console.log(x);
-
-console.log(+x); */
-
-/* var x = new Boolean(false);
-
-console.log(x.valueOf());
-
-console.log(!!x);
-
-console.log('value is:', x);
-
-console.log(+x); */
-
-/* var x = new Number(100);
-console.log(+x);
-
-x.valueOf = () => 101;
-console.log(+x);
-
-x[Symbol.toPrimitive] = () => 0;
-console.log(+x);
-
-console.log(x);
-
-console.log(x.toString()); */
-
-/* var x= {};
-x.toString = () => new Object;
-x.valueOf = () => 0;
-
-console.log('string value:', String(x));
-console.log('number value:', Number(x));
-console.log('boolean value:', Boolean(x)); */
-
-/* console.log('0022' - 1);
-
-console.log('00.22' * 10)
-
-console.log('.22' * '100.'); */
-
-// console.log(+'9.9E5');
-
-/* var x = Symbol(true), y = Symbol(true), z = Symbol(new Object);
-console.log(x === y); */
-
-/* var x = Symbol(), obj = Object(x);
-
-console.log(x === obj);
-
-console.log(x == obj); */
-
-/* var x = new Object;
-x.toString = () => '1e-10';
-x.valueOf = () => 1e10;
-
-console.log(parseInt(x));
-
-console.log(parseFloat(x));
-
-console.log(Number(x)); */
-
-/* var aArray = ['a', 'b', 'c', 'd'];
-console.log('1' in aArray);
-
-for (var i in aArray) {
-    console.log(i + '=> ' + aArray[i]);
-} */
-
-/* var arr = [1, 2, '345', , 12];
-
-var [x, y]= arr;
-console.log(x, y);
-
-console.log(['elements: ', ...arr]);
-
-var {0: x, 1: y, length} = arr;
-console.log(x, y, length);
-
-var x = {length: 100, ...arr};
-console.log(x.length + ' => ' + Object.keys(x)); */
-
-/* var arr = new Array(1000*10000);
-arr[1] = 3;
-arr[3] = 1;
-arr[5] = 5;
-arr[9999] = 9;
-
-function func(lv, rv) {
-    console.log(lv + ", " + rv);
-    return lv > rv ? 1 : (lv == rv ? 0 : -1);
-}
-arr.sort(func)
-
-var proxy = new Proxy(arr, {
-    ownKeys() {
-        console.log('TRY -> ownKeys()');
-        return Reflect.ownKeys(...arguments);
-    },
-    get(_, key) {
-        console.log('GET -> ', key);
-        return Reflect.get(...arguments);
-    }
-})
-
-arr.length = 30;
-proxy.sort();
-
-for (let x of proxy);
-
-for (let x in proxy); */
-
-/* var arr = [1, 2, 3];
-Object.defineProperty(arr, 'length', { writable: false });
-
-arr.pop(); */
+delete Object.getPrototypeOf(obj1).name;
+console.log(obj1.name);
+console.log(obj2.name); */
 
 /* var getPropertyOwner = function f(obj, key) {
-    return !obj ? null
-        : obj.hasOwnProperty(key) ? obj
-        : f(Object.getPrototypeOf(obj), key);
+    return !obj ? null :
+        obj.hasOwnProperty(key) ? obj :
+        f(Object.getPrototypeOf(obj), key);
 }
 
-var typedArr = new Int32Array;
-console.log(typedArr.hasOwnProperty('length'));
+// 从对象（以及其原型）中删除属性
+function deepDeleteProperty(obj, key) {
+    if (!(key in obj)) return false;
 
-var p = getPropertyOwner(typedArr, 'length');
-console.log(Object.getOwnPropertyDescriptor(p, 'length')); */
+    while (obj = getPropertyOwner(obj, key)) {
+        if (!Reflect.deleteProperty(obj, key)) return false;
+    }
 
-/* var typedArr = new Int32Array(10);
+    return true;
+}
 
-var elementSize = (new typedArr.constructor(1)).buffer.byteLength;
+// 创建实例
+var baseObj = Object.create({
+    value: 100
+});
+var obj1 = Object.create(baseObj);
+var obj2 = Object.create(baseObj);
 
-console.log('length: ', typedArr.buffer.byteLength / elementSize); */
+// 重写
+obj1.value = 200;
+console.log(obj1.value);
+console.log(obj2.value);
 
-/* var arr2 = Object.create(null, { length: { value: 0, writable: true } });
+deepDeleteProperty(obj1, 'value');
+console.log(obj1.value);
+console.log(obj2.value); */
 
-var obj = { length: 0 };
+/* var y = 100;
 
-console.log(Array.prototype.push.call(arr2, ...'ABC'));
+with({
+    x: 100
+}) {
+    valueOf().y = 300;
+    console.log(x, y);
+    delete y;
+    console.log(x, y);
+} */
 
-console.log(arr2);
+/* var x = 100, y = 200, tries = 0;
 
-arr2[Symbol.iterator] = Array.prototype[Symbol.iterator];
+with({x, y}) for (key in valueOf()) {
+    if (tries++ === 0) {
+        valueOf().z = 300;
+        console.log("SHOW : ", 'z', z);
+    }
 
-console.log(...arr2);
+    console.log("FORIN: ", key, eval(key));
+}
 
-var f = new Function('return arguments[Symbol.iterator]'), iter = f();
+console.log('-------------------------');
+with([x, y]) for (value of valueOf()) {
+    if (length === 2) {
+        push(300);
+        console.log("ARRAY: ", length, " elements, values: ", ...valueOf());
+    }
 
-console.log(iter === arr2[Symbol.iterator]); */
+    console.log('FOROF: ', value);
+} */
 
-/* console.log(new Map([[NaN, 0], [NaN, 1]]))
+/* function MyObject() {
+    this = null;
+}
 
-console.log(new Set([NaN, NaN])); */
+this = null;
+new MyObject(); */
 
-// console.log(new Set('wermcrewosfjend'));
+/* global.this = 'hello';
+console.log(this === global);
+console.log(this.this); */
 
-/* var x = new Set('123456asdf');
+/* var x ={value: 100};
+var value = 1000;
 
-var arr = Int32Array.from(x);
+with({ this: x }) {
+    console.log(this.value);
+} */
 
-console.log(arr); */
+/* var obj = obj1 = {};
+var obj2 = {};
 
-/* let arr = Object.getOwnPropertyNames(global).filter(key => Object
-    .getOwnPropertyDescriptor(global, key).writable);
-console.log(arr); */
+switch(obj) {
+    case obj = obj2: console.log('obj2'); break;
+    case obj1: console.log('obj1'); break;
+}
 
-/* function f() {
-    console.log('enter f()');
-    const x = 1;
-    x = 2;
+console.log(obj === obj2); */
+
+/* function foo(x) {
+    try {
+        return x;
+    } finally {
+        x = x*2;
+    }
+}
+
+console.log(foo(100)); */
+
+/* function foo(x) {
+    try {
+        return x;
+    } finally {
+        x.push(100);
+    }
+}
+
+console.log(foo([1, 2, 3])); */
+
+/* function f(eval) {
+    "use strict"
+} */
+
+/* var thisArg = new Object;
+
+function foo(data) {
+    var test = x => eval('console.log(this === thisArg, x)');
+    test(data);
+}
+
+foo.call(thisArg, 100);
+
+var obj = { x: 1 };
+var that = this;
+with(obj) {
+    eval('console.log(this === global, x)');
+    console.log(this === that);
+    console.log(global);
+    console.log(this);
+}
+
+module.exports  = obj */
+
+/* var x = 100;
+eval('x = 1000');
+console.log(x);
+
+if (true) {
+    let x = 'a';
+    eval('x = "b"');
+    console.log(x);
+}
+
+console.log(x);
+
+var obj = { eval, x: true };
+with(obj) eval('x=false');
+console.log(obj.x);
+console.log(x); */
+
+/* var obj = { eval, x: 100 };
+var x = 'global';
+
+with(obj) {
+    console.log(x);
+
+    eval('console.log(x)');
+    obj.eval('console.log(x)');
+
+    eval('delete obj.x');
+    console.log(x);
+
+    eval('obj.x = 200');
+    console.log(x);
+
+    let y = 'with';
+    eval("let y = 'eval'; console.log(y);");
+    console.log(y);
+} */
+
+/* var f1 = () => eval('let x = new.target');
+
+function foo() {
+    var x, f2 = () => eval('x = new.target');
+    f2();
+    console.log(x === foo);
 } */
 
 /* function foo() {
-    abc = 100;
+    "use strict";
+    var x = 100, obj = { eval };
+    obj.eval('console.log(++x)');
 }
 
-var x = 100;
-var obj = {x}; */
+foo();
+console.log(x);
+var x = 'global';
+console.log(x); */
+/* "use strict"
+try {
+    x  = 100;
+} catch (error) {
+    console.log('in strict:', error.message);
+} finally {
+    console.log('now, s is:', typeof x);
+}
 
-/* var obj = {};
-
-obj = new Proxy(obj, {
-    set(target, key, value) {
-        if (key === 'x' && Object.getOwnPropertyDescriptor(target, key).configurable) {
-            return Reflect.defineProperty(target, key, {value});
+function foo() {
+    var obj = {eval};
+    obj.eval(`
+        try {
+            x = 100;
+        } finally {
+            console.log("in obj.eval, x is:", x);
         }
+    `);
 
-        return Reflect.set(target, key, value);
-    }
-})
+}
 
-Object.defineProperty(obj, 'x', { value: 100, configurable: true });
+foo();
+console.log('in global, x is: ', x); */
 
-console.log(Object.getOwnPropertyDescriptor(obj, 'x').writable);
+/* var exec = eval;
+var f = () => eval;
 
-obj.x = 2000;
-console.log(obj.x);
+exec(`console.log("indirect call")`);
 
-console.log(Object.getOwnPropertyDescriptor(obj, 'x')) */
+f()('console.log("indirect call")');
 
-/* var x = 'a'
-console.log(typeof x);
+eval.call(null, 'console.log("indirect call")');
 
-x++
-console.log(typeof x, x); */
+(0, eval)('console.log("indirect call")'); */
 
-/* try {
+/* eval(`
+    "use strict";
+
     try {
-        throw { message: 'ERROR!', code: 100 }
-    } catch ({ message, code }) {
-        var message = 'NOTHING';
-        console.log(message, code);
-        
+        undefined = void 0;
+    } catch(e) {
+        console.log(e.message);
     }
-} catch (e) {
-    e = {message: 'new error message'}
-    console.log(e);
-} */
+
+    function x() {
+        "use strict";
+
+    }
+
+    console.log("A function declaration:", typeof x);
+`) */
 
 /* var x = 100;
-function foo(cond) {
+
+eval(`
+    "use strict";
+    var x = x * 2;
+    console.log("stice mode:", x);
+`);
+
+eval(`
+    var x = x * 2;
+    console.log("normal mode:", x);
+`) */
+
+/* var global_f = f;
+function f() {
+    var x = 100;
+    eval('function f() {}; var x = x * 2;');
+    console.log(f === global_f);
     console.log(x);
-    if (cond) {
-        var x = 1000;
-    } else {
-        function x() {
+} */
 
-        }
-    }
-    console.log(x);
-}
-
-foo(true)
-foo(false) */
-
-/* function MyObject() {}
-
-var obj1 = new MyObject()
-
-MyObject.prototype.type = 'MyObject';
-MyObject.prototype.value = 'test';
-
-var obj2 = new MyObject();
-
-MyObject.prototype = {
-    constructor: MyObject,
-    type: 'Bird',
-    fly: function() {}
-};
-
-var obj3 = new MyObject();
-
-console.log(obj1.type);
-console.log(obj2.type);
-console.log(obj3.type);
-
-console.log(obj1 instanceof MyObject);
-console.log(obj2 instanceof MyObject);
-console.log(obj3 instanceof MyObject); */
-
-var NativeObject = Object;
-
-Object = function() {
-
-}
-
-function MyObject() {
-
-}
-
-console.log(MyObject.prototype instanceof NativeObject);
-console.log(MyObject.prototype instanceof Object);
