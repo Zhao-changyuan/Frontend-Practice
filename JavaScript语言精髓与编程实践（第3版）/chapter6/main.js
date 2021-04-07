@@ -320,3 +320,118 @@ function f() {
     console.log(x);
 } */
 
+/* var obj = {};
+function foo() {
+    var x = 100;
+    eval('let y = 200; obj.x = () => x; obj.y = () => y;');
+}
+
+foo();
+console.log(obj.x());
+console.log(obj.y()); */
+
+/* console.log(eval('true'))
+console.log(eval('"this is a string"'))
+console.log(eval('3'))
+console.log(eval('{ name: "MyName", value: 1 }')); */
+
+/* var func = new Function('console.log("Hello, World!")');
+
+var f1 = new Function('return ' + func.toString());
+
+var f2 = eval(`( ${func.toString()} )`); */
+
+/* var obj = {
+    foo: function() {},
+    data: 'string',
+    tag: false
+};
+
+obj.foo.x = obj;
+
+var nonEmpty = x => (Object.keys(x).length > 0) && x;
+function functionFilter(k, v) {
+    return (typeof v == 'function') && nonEmpty(Object.assign({}, v)) || v;
+}
+
+console.log(JSON.stringify(obj));
+
+delete obj.foo.x;
+console.log(JSON.stringify(obj, functionFilter));
+
+obj.foo.x = 100;
+console.log(JSON.stringify(obj, functionFilter));
+
+console.log(JS); */
+
+/* require('./cycle');
+
+var obj = {};
+obj.x = obj;
+
+console.log(JSON.stringify(JSON.decycle(obj)));
+
+var jsonText = JSON.stringify(JSON.decycle(obj));
+console.log(JSON.parse(jsonText));
+
+console.log(JSON.retrocycle(JSON.parse(jsonText))); */
+
+/* var obj = { foo() {} };
+
+var methodToString = (k, v) => {
+    if (typeof v == 'function') {
+        return v.toString().replace(/(function )?/, 'function ');
+    }
+
+    return v;
+}
+
+var str = JSON.stringify(obj, methodToString);
+console.log(str);
+
+
+var obj2 = eval('(' + str + ')');
+console.log(typeof obj.foo);
+console.log(typeof obj2.foo); */
+
+/* var i = 100;
+
+function myFunc(ctx) {
+    console.log('value is: ' + i);
+    eval(ctx);
+    console.log('value is: ' + i);
+}
+
+myFunc('var i = 10;'); */
+
+/* var AsyncFunction = (async x => x).constructor;
+var valueInScope = 'global';
+
+function test() {
+    var valueInScope = 'function test';
+    (async function() { return 'def: ' + valueInScope })().then(console.log);
+    (new AsyncFunction("return 'new: ' + valueInScope"))().then(console.log);
+}
+
+test(); */
+
+// console.log((async x => x).constructor);
+
+/* let global = Function('return this')();
+console.log(global); */
+
+/* {
+    x: 2
+} */
+
+/* function foo(message) {
+    let x = 100;
+    let t = `${message}: ${x}`;
+    return t;
+}
+
+var x = 200;
+console.log(foo('Hi')); */
+
+
+
