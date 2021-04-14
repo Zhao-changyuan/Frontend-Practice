@@ -433,5 +433,154 @@ console.log(global); */
 var x = 200;
 console.log(foo('Hi')); */
 
+/* function foo(name) {
+    console.log('hi, ' + name);
+}
+
+foo.call(null, 'Guest');
+foo.apply(null, ['Guest']);
 
 
+_id,username,id_number,mobile,company_name,plate_number,visit_time,visit_campus,visit_building,visit_floor,visited_username,visited_department,visited_department_id,highrisk,reason,health_code_url,route_record_url,nat_url,receive_audit_result_msg,uid,status,create_time,update_time
+ */
+
+/* function calc_area(w, h) {
+    console.log(w * h);
+}
+
+var Area = {
+    doCalc(x = 5) {
+        x *= 2;
+        calc_area.apply(this, arguments);
+    }
+};
+
+Area.doCalc(10, 100); */
+
+/* var x = 2, y = 3;
+var calc_area = () => console.log(this.x * this.y);
+
+var a = {x: 100, y: 200};
+calc_area.call(a) */
+
+/* var x = 2, y = 3;
+
+var calc_area = function() {
+    console.log(this.x * this.y);
+}
+
+calc_area.call();
+calc_area(); */
+
+/* var id = 'global';
+
+var obj = { id: 'MyObj' };
+
+Object.defineProperty(obj, 'foo', {
+    get() {
+        return () => {
+            console.log(this.id);
+        }
+    }
+})
+
+var f = obj.foo;
+f(); */
+
+/* class MyObj {
+    constructor(id) {
+        this.id = id;
+    }
+
+    get foo() {
+        return () => {
+            console.log(this.id);
+        }
+    }
+}
+
+f = (new MyObj('o1')).foo;
+f();
+f = (new MyObj('o2')).foo;
+f();
+
+obj = { id: 'obj', foo: f };
+obj.foo();
+obj.foo.call(obj);
+obj.foo.apply(obj); */
+
+/* obj = {}
+
+function foo() {
+    return this;
+}
+
+foo2 = foo.bind(obj);
+
+obj2 = {};
+obj2.foo2 = foo2;
+
+console.log(obj === foo2());
+console.log(obj === global.foo2());
+console.log(obj === obj2.foo2()); */
+
+/* obj = {msg: 'message'};
+function foo(a) {
+    console.log(this.msg + a);
+}
+
+foo2 = foo.bind(obj, 'abc');
+foo2(123); */
+
+/* obj = {};
+function foo(a) {
+    console.log(this === obj);
+
+    console.log(a);
+}
+
+Foo = foo.bind(obj, 'abc');
+
+newInstance = new Foo('123');
+console.log(newInstance instanceof foo);
+console.log(newInstance instanceof Foo);
+
+console.log('prototype' in Foo); */
+
+/* function foo() {
+    console.log(arguments.length, ...arguments);
+} */
+
+/* function func_1(v1) {
+    v1 = 100;
+}
+
+
+function func_2(name) {
+    func_1.apply(this, arguments);
+    console.log(name);
+}
+
+func_2('MyName'); */
+
+/* function func_3() {
+    arguments.callee.caller.arguments[0] = 100;
+}
+
+function func_4(name) {
+    func_3();
+    console.log(arguments[0], name);
+}
+
+func_4('MyName'); */
+
+function func_5() {
+    Array.prototype.push.call(arguments.callee.caller.arguments, 100);
+}
+
+function func_6(name) {
+    func_5();
+    console.log(arguments.length);
+}
+
+func_6('MyName');
