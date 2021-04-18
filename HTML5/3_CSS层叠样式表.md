@@ -152,13 +152,13 @@ none underline overline line-through
 
 text-indent属性用来指定文本的第一行的缩进，同常是将段落的首行缩进。
 
-em是一个相对单位，就是当前元素（font-size）1个文字的大小，如果当前元素没有设置大小，则会按照父元素的1个文字大小。
+**em是一个相对单位，就是当前元素（font-size）1个文字的大小**，如果当前元素没有设置大小，则会按照父元素的1个文字大小。
 
 #### 4.5 行间距
 
 line-height属性用于设置行间的距离（行高）。可以控制文字行与行之间的距离。
 
-![image-20210404154602773](assets/image-20210404154602773.png)
+![image-20210404154602773](https://lark-assets-prod-aliyun.oss-cn-hangzhou.aliyuncs.com/yuque/0/2021/png/21377645/1618714732486-resources/19891056/png/41b484a7-82dd-49e6-a6d5-f353aed0f782.png?OSSAccessKeyId=LTAI4GGhPJmQ4HWCmhDAn4F5&Expires=1618716558&Signature=oHS398fpptVzDiyquBn%2FgMEDPPQ%3D)
 
 上间距+文本高度+下间距
 
@@ -296,7 +296,7 @@ a:active /* 选择活动链接（鼠标按下未弹起的链接） */
 
 ##### 实际工作开发中的写法：
 
-先为a指定一个样式，在为:hover指定样式。
+**先为a指定一个样式，在为:hover指定样式。**
 
 #### 7.7 :focus 伪类选择器
 

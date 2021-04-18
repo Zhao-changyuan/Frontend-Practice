@@ -1,0 +1,46 @@
+
+css层叠样式表：
+font复合属性：
+font: font-style font-weight font-size/line-height font-family;
+
+连接伪类选择器设置顺序：
+a:link
+a:visited
+a:hover
+a:active
+
+背景颜色复合写法：
+background: color image repeat attachement position;
+
+继承性：
+text- font- line- color
+
+CSS盒子模型：
+表格的细线边框：
+border-collapse: collapse；相邻边框合并在一起。
+
+box-shadow: h-shadow v-shadow blur spread color inset;
+常用阴影颜色：rgba(0, 0, 0, .3);
+box-shadow: h-shadow v-shadow blur spread color inset;
+box-shadow: h-shadow v-shadow blur spread color inset;
+
+网页布局第一准则：多个块级元素纵向排列找标准流，多个块级元素横向排列找浮动。
+网页布局第二准则：先设置盒子大小，之后设置盒子位置。
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+CSS属性书写顺序建议遵循以下顺序：
+1. 布局定位属性：display position float clear visibility overflow
+2. 自身属性：width height margin padding border background
+3. 文本属性：color font text-decoration text-align vertical-align white-space break-word
+4. 其他属性（CSS3）：content cursor border-radius box-shadow text-shadow background: linear-gradient...
