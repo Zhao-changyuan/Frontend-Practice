@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React JSX Exp - Triple Condtional</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        var divReact = document.getElementById('id-div-react')
+        const css_p_lg = {
+            fontSize: 20,
+            fontStyle: 'bold',
+            color: 'red'
+        }
+        const css_p_md = {
+            fontSize: 16,
+            fontStyle: 'normal',
+            color: 'green'
+        }
+        const css_p_sm = {
+            fontSize: 12,
+            fontStyle: 'italic',
+            color: 'blue'
+        }
+
+        const reactSpan = (
+            <span>
+                <h3>JSX函数表达式</h3>
+                {/* 正确注释 */}
+                /* 错误注释 */
+            </span>
+        )
+
+        ReactDOM.render(reactSpan, divReact);
+    </script>
+</body>
+
+</html>
