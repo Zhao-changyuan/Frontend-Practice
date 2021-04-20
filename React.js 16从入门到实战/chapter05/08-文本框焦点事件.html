@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react')
+
+        class InputFocusComp extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    inputVal: ''
+                }
+
+                this.inputTextFocus = this.inputTextFocus.bind(this);
+                this.inputTextBlur = this.inputTextBlur.bind(this);
+                this.inputValueChange = this.inputValueChange.bind(this);
+            }
+
+            inputTextFocus(e) {
+                e.preventDefault();
+                console.log('focus');
+                this.setState({
+                    inputVal: e.target.value
+                })
+            }
+
+            inputTextBlur(e) {
+                e.preventDefault();
+                console.log('blur');
+                this.setState({
+                    inputVal: e.target.value
+                })
+            }
+
+            inputValueChange(e) {
+                e.preventDefault()
+                this.setState({
+                    inputVal: e.target.value
+                })
+                console.log(this.state.inputVal);
+            }
+
+            render() {
+                const inputVal = this.state.inputVal
+
+                return (
+                    <input type="text" value={inputVal} onBlur={this.inputTextBlur} onFocus={this.inputTextFocus} onChange={this.inputValueChange} />
+                )
+            }
+        }
+
+        ReactDOM.render(<InputFocusComp />, divReact);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react');
+
+        // TODO: define ES6 Class Component
+        class ParamsEventComp extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    name: 'Hello React!'
+                }
+            }
+
+            passParamsClick(name, e) {
+                e.preventDefault()
+                console.log(name);
+            }
+
+            render() {
+                return (
+                    <div>
+                        {/* 通过Arrow Function 方法传递参数 */}
+                        <button onClick={this.passParamsClick.bind(this, this.state.name)}>
+                            Click Me!
+                        </button>
+                    </div>
+                )
+            }
+        }
+
+        const reactDiv = (
+            <div>
+                <h3>React Event - Class</h3>
+                <ParamsEventComp />
+            </div>
+        )
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>
