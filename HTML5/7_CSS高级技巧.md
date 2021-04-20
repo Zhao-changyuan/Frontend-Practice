@@ -109,3 +109,101 @@ iconfont
 ### 4.3 防止拖拽文本域resize
 
 resize: none;
+
+### 5. vertical-align 属性应用
+
+CSS的vertical-align属性使用场景：经常用于设置图片或者表单（行内块元素）和文字垂直对齐。
+
+官方解释：用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效。
+
+baseline | top | middle | bottom
+
+| 值       | 描述                                     |
+| -------- | ---------------------------------------- |
+| baseline | 默认。元素放置在父元素的基线上。         |
+| top      | 把元素的顶端与行中最高元素的顶端对齐     |
+| middle   | 把次院士放置在父元素的中部               |
+| bottom   | 把元素的顶端与行中最低的元素的顶端对齐。 |
+
+#### 5.1 图片、表单和文字对齐
+
+图片、表单都输入行内块元素，默认的vertical-align是基线对齐。
+
+此时i给图片、表单这些行内块元素的vertical-align属性设置为middle就可以让文字和图片垂直居中对齐了。
+
+#### 5.2 解决图片底部默认空白缝隙问题
+
+bug: 图片底侧会有一个空白缝隙，原因是行内块元素会和文字的基线对齐。
+
+主要解决方法有两种：
+
+1. 给图片添加vertical-align: middle | top | bottom等。（提倡使用的）
+2. 把图片转换为块级元素display: block;
+
+### 6. 溢出的文字省略号显示
+
+#### 6.1 单行文本溢出显示省略号
+
+必须满足三个条件：
+
+1. 先强制一行内显示文本：white-space: nowrap;（默认 normal 自动换行）
+2. 超出部分隐藏：overflow: hidden;
+3. 文字用省略号替代超出部分：text-overflow: ellipsis;
+
+```css
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+```
+
+#### 6.2 多行文本溢出显示省略号
+
+多行文本溢出显示省略号，有较大兼容性问题，适合于webkit浏览器或移动端。
+
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+/* 弹性伸缩很自模型显示 */
+display: -webkit-box;
+/* 限制在一个块元素显示的文本行数 */
+-webkit-line-clamp: 2;
+/* 设置或检索伸缩盒子的子元素的排列方式 */
+-webkit-box-orient: vertical;
+```
+
+更推荐让后台人员来做这个效果，因为后台人员可以设置显示多少个字，操作更简单。
+
+### 7. 常见布局技巧
+
+#### 7.1 margin负值运用
+
+1. 让每个盒子margin往左侧移动-1px正好压住相邻盒子边框。
+2. 鼠标经过某个盒子的时候，提高当前盒子的层级即可（如果没有定位，则加相对定位（保留位置），如果有定位，则加z-index）
+
+#### 7.2 文字围绕浮动元素
+
+![](https://lark-assets-prod-aliyun.oss-cn-hangzhou.aliyuncs.com/yuque/0/2021/png/21377645/1618917857995-resources/19891056/png/3b4af4e1-6488-4f9d-bb2d-6c9d699ac8a5.png?OSSAccessKeyId=LTAI4GGhPJmQ4HWCmhDAn4F5&Expires=1618919664&Signature=6y1o6ommKTKXLtI4Kt7lpLVdn6k%3D)
+
+巧妙运用浮动元素不会压住文字的特性。
+
+#### 7.3 行内块巧妙运用
+
+给行内块元素的父盒子设置text-align: center;
+
+#### 7.4 CSS三角强化
+
+![](https://lark-assets-prod-aliyun.oss-cn-hangzhou.aliyuncs.com/yuque/0/2021/png/21377645/1618927864091-resources/19891056/png/7b058363-cac9-43b7-9393-2b4c97f59a81.png?OSSAccessKeyId=LTAI4GGhPJmQ4HWCmhDAn4F5&Expires=1618929667&Signature=pK2QTKfTeFOL%2FRQmbhi9zYmnYyU%3D)
+
+1. 左边和下边的边框宽度设置为0
+2. 把上边框宽度调大
+3. 把上边框颜色改为透明色
+
+### 8. CSS初始化
+
+不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼容，我们需要对CSS初始化。 
+
+简单理解：CSS初始化是指重设浏览器的样式。
+
+Unicode编码字体：
+
+把中文字体的名称用相应的Unicode编码来代替，这样就可以有效避免浏览器解释CSS代码时候出现乱码的问题。
