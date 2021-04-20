@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react')
+
+        function UserLoggedInComp(props) {
+            return <p>Hello, welcome back to my app.</p>
+        }
+        function UserLoggedOutComp(props) {
+            return <p>Hello, please log in first.</p>
+        }
+        function UserLoggedComp(props) {
+            const isLogged = props.isLogged
+            return isLogged ? <UserLoggedInComp /> : <UserLoggedOutComp />;
+        }
+
+        const reactDiv = (
+            <div>
+                <h3>React Render - If User Logged In?</h3>
+                <UserLoggedComp isLogged={true} />
+            </div>
+        )
+
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>

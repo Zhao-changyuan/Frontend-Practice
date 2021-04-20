@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React render method</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        /**
+         * update time 
+         */
+        function updateTime() {
+            const renderDiv = (
+                <div>
+                    <h3>React 渲染机制</h3>
+                    <p>下载的时间是{new Date().toLocaleTimeString()}.</p>
+                </div>
+            );
+            var divReact = document.getElementById('id-div-react');
+            ReactDOM.render(renderDiv, divReact);
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+
+</html>

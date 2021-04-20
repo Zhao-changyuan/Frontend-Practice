@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react');
+
+        class CountReactComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0
+                }
+            }
+
+            componentDidMount() {
+                this.timerId = setInterval(() => this.count(), 1000)
+            }
+            count() {
+                // this.state.count += this.props.increment
+                this.setState((prevState, props) => {
+                    return {
+                        count: prevState.count + props.increment
+                    }
+                })
+            }
+            componentWillUnmount() {
+                clearInterval(this.timerId)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h3>React State - Direct Change State</h3>
+                        <p>Hello, count is {this.state.count}.</p>
+                    </div>
+                )
+            }
+        }
+        CountReactComp.defaultProps = {
+            increment: 1,
+        }
+
+        ReactDOM.render(<CountReactComp />, divReact)
+    </script>
+</body>
+
+</html>

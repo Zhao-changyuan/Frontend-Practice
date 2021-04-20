@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React JSX 表达式</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        var divReact = document.getElementById('id-div-react')
+        const userinfo = {
+            name: 'King',
+            gender: 'male',
+            age: 18
+        }
+        const reactSpan = (
+            <span>
+                <h3>JSX对象表达式</h3>
+                <p>Userinfo: name is {userinfo.name}, {userinfo.gender} and {userinfo.age} years old.</p>
+            </span>
+        )
+
+        ReactDOM.render(reactSpan, divReact);
+    </script>
+</body>
+
+</html>

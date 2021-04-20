@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript createElement()</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        div#id-div-react {
+            position: relative;
+            width: 400px;
+            height: auto;
+            border: 0 solid black;
+            margin: 8px auto;
+            padding: 8px;
+            font: normal 16px/1.6em "Microsoft Yahei", arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script>
+        var divReact = document.getElementById('id-div-react');
+        const jsSpan = document.createElement('span');
+        const jsH3 = document.createElement('h3');
+        const jsP = document.createElement('p');
+
+        jsH3.innerText = "JavaScript DOM";
+        jsP.innerText = "Create dom by JavaScript's createElement() func.";
+
+        jsSpan.appendChild(jsH3);
+        jsSpan.appendChild(jsP);
+        divReact.appendChild(jsSpan);
+    </script>
+</body>
+
+</html>
