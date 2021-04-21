@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+
+    <script type="text/babel">
+        let divReact = document.getElementById('id-div-react');
+
+        class FormComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    username: 'king'
+                }
+            }
+
+            render() {
+                return (
+                    <form>
+                        <label>Name:</label>    
+                        <input type="text" name="name" value={this.state.username} />
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        const reactDiv = (
+            <div>
+                <h3>React Form - Form Control State</h3>
+                <FormComp />
+            </div>
+        )
+
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+
+    <script type="text/babel">
+        let divReact = document.getElementById('id-div-react');
+
+        class FormComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    sn: ''
+                }
+                this.handleSNChange = this.handleSNChange.bind(this);
+            }
+
+            handleSNChange(event) {
+                let targetSN = event.target.value
+                let finalSN = targetSN
+
+                if (targetSN.length > 11) {
+                    finalSN = targetSN.substring(0, 11)
+                } else {
+                    if (targetSN.length === 3) {
+                        finalSN = targetSN + '-'
+                    } else if (targetSN.length === 7) {
+                        finalSN = targetSN + '-'
+                    }
+                }
+
+                this.setState({ sn: finalSN })
+            }
+
+            render() {
+                return (
+                    <form>
+                        <label>Serial Number:</label>
+                        <input type="text" name="sn" value={this.state.sn}  onChange={this.handleSNChange} /><br />
+                        <input type="submit" value="提交" />
+                    </form>
+                )
+            }
+        }
+
+        const reactDiv = (
+            <div>
+                <h3>React Form - Serial Number Format</h3>
+                <FormComp />
+            </div>
+        )
+
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>
