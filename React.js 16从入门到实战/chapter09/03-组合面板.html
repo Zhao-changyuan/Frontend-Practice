@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+    <style>
+        .dialogBorder-gray {
+            border-style: solid;
+            border-color: grey;
+            border-width: 2px 6px 6px 2px;
+        }
+
+        .dialog-message {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+
+    <script type="text/babel">
+        let divReact = document.getElementById('id-div-react');
+
+        function HeaderPanel() {
+            return <div className="css-header">Header Panel</div>
+        }
+
+        function LeftPanel() {
+            return <div className="css-left">Left Panel</div>
+        }
+
+        function RightPanel() {
+            return <div className="css-right">Right Panel</div>
+        }
+
+        function MainPancel(props) {
+            return (
+                <div className="main-panel">
+                    <div className="main-panel-header">
+                        {props.header}
+                    </div>
+                    <div className="main-panel-left">
+                        {props.left}
+                    </div>
+                    <div className="main-panel-right">
+                        {props.right}
+                    </div>
+                </div>
+            )
+        }
+
+        function App() {
+            return (
+                <MainPancel
+                    header={<HeaderPanel />}
+                    left={<LeftPanel />}
+                    right={<RightPanel />}
+                />
+            )
+        }
+
+        const reactDiv = (
+            <div>
+                <h3>非受控组件</h3>
+                <App />
+            </div>
+        )
+
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>
