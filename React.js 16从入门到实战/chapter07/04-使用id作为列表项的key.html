@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- react.js -->
+    <script src="../js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="../js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react')
+
+        function MapList(props) {
+            const alpha = props.alpha;
+            const ids = [];
+            for (let i = 0; i < 5; i++) {
+                ids.push(Math.round(Math.random() * Math.pow(10, 10)));
+            }
+
+            const listAlpha = alpha.map((item, index) => {
+                return <li key={ids[index].toString()}>{item.toUpperCase()} - {item}</li>
+            })
+            console.log(listAlpha);
+            return (
+                <ul>
+                    {listAlpha}
+                </ul>
+            )
+        }
+
+        const alpha = ['a', 'e', 'i', 'o', 'u']
+
+        const reactDiv = (
+            <div>
+                <h3>React List - Map List</h3>    
+                <MapList alpha={alpha} />
+            </div>
+        )
+        ReactDOM.render(reactDiv, divReact)
+    </script>
+</body>
+
+</html>
