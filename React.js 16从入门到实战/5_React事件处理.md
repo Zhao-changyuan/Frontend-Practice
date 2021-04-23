@@ -41,6 +41,8 @@ onClick={handleFuncName}
 
 ### 5.5 绑定回调方法的其他方式
 
+绑定this关键字的重要性。
+
 通过试验性的public class fields语法正确地绑定回调方法的方式。
 
 通过箭头函数定义的，这会确保this关键字被绑定。另外，根据React官方文档的说明，该绑定方式是“试验性”的语法。
@@ -51,7 +53,12 @@ onClick={handleFuncName}
 
 ### 5.6 在事件处理方法中传递参数
 
-React可以通过两种方式在事件处理方法中传递参数，分别是箭头函数方式和通过bind()方法的绑定方式。
+React可以通过两种方式在事件处理方法中传递参数，分别是**箭头函数方式**和通过**bind()方法**的绑定方式。
+
+```
+onClick={this.handleClick.bind(this, this.state.name)}
+onClick={(e) => this.handleClick(this.state.name, e)}
+```
 
 注意要将合成事件参数对象（e）放在最后。
 
