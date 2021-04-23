@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据流</title>
+    <!-- react.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react')
+
+        class Son extends React.Component {
+            render() {
+                const {name, age} = this.props
+
+                return (
+                    <div>
+                        I an {name} and I am {age} years old!
+                    </div>
+                )
+            }
+        }
+
+        class Father extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Son name="Jack" age={25} />
+                    </div>
+                )
+            }
+        }
+        
+        class Article extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    like: false
+                }
+            }
+
+            handleLike = () => {
+                this.setState({
+                    like: !this.state.like
+                })
+            }
+
+            render() {
+                const {title, content, author} = this.props
+                return (
+                    <div>
+                        <h3>{title}</h3>
+                        <p>{content}</p>
+                        <span>{author}</span>
+                        <br/>
+                        <button onClick={this.handleLike}>
+                            { this.state.like ? '喜欢' : '不喜欢' }
+                        </button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Article title="标题" content="内容" author="赵长远"/>, divReact)
+    </script>
+</body>
+
+</html>

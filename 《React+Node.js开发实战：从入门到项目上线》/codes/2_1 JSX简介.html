@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX简介</title>
+    <!-- react.js -->
+    <script src="./js/react.development.js"></script>
+    <!-- react-dom -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel.js -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="id-div-react"></div>
+    <script type="text/babel">
+        const divReact = document.getElementById('id-div-react')
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>hello world</div>
+                )
+            }
+        }
+
+        const Container = (WrapperComponent) => {
+            return class extends React.Component {
+                render() {
+                    let newProps = { status: 'ok' }
+                    return <WrapperComponent {...this.props} {...newProps} />
+                }
+            }
+        }
+
+        const App1 = Container(App)
+
+        function Article() {
+            return (
+                <>
+                    <h3 className="title" style={{color: 'red', fontSize: '14px'}}>This is title</h3>
+                    <p>This is content</p>
+                    <span>This is author</span>
+                    <App1 />
+                </>
+            )
+        }
+
+        
+
+        ReactDOM.render(<Article/>, divReact)
+    </script>
+</body>
+
+</html>
