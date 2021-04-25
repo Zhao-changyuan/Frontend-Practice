@@ -19,28 +19,7 @@
     <script type="text/babel">
         const divReact = document.getElementById('id-div-react')
 
-        class Son extends React.Component {
-            render() {
-                const {name, age} = this.props
-
-                return (
-                    <div>
-                        I an {name} and I am {age} years old!
-                    </div>
-                )
-            }
-        }
-
-        class Father extends React.Component {
-            render() {
-                return (
-                    <div>
-                        <Son name="Jack" age={25} />
-                    </div>
-                )
-            }
-        }
-        
+        // 文章组件
         class Article extends React.Component {
             constructor(props) {
                 super(props);
@@ -51,15 +30,14 @@
             }
 
             handleLike = () => {
-                this.setState({
-                    like: !this.state.like
-                })
+                this.props.onSetHighLight()
             }
 
             render() {
                 const {title, content, author} = this.props
                 return (
                     <div>
+                        <button onClick={this.handleLike}>高亮</button>
                         <h3>{title}</h3>
                         <p>{content}</p>
                         <span>{author}</span>
@@ -72,7 +50,41 @@
             }
         }
 
-        ReactDOM.render(<Article title="标题" content="内容" author="赵长远"/>, divReact)
+        // 文章列表组件
+        class ArticleList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    highLight: false
+                }
+            }
+
+            setHightLight= () => {
+                this.setState({ highLight: true })
+            }
+
+            render() {
+                const articles = [
+                    {
+                        title: '标题',
+                        content: '内容',
+                        author: '作者'
+                    }
+                ]
+
+                return (
+                    <div style={{background: this.state.highLight ? 'green' : 'white'}}>
+                        {
+                            articles.map(item => {
+                                return <Article {...item} key={item.title} onSetHighLight={this.setHightLight} />
+                            })
+                        }
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<ArticleList />, divReact)
     </script>
 </body>
 
