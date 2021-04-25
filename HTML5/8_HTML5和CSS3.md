@@ -132,3 +132,75 @@ nth-child与nth-of-type的区别：
 
 - nth-child会把所有的亲儿子都排列序号；如果并集选择器中有nth-child选择器，则先根据nth-child规则进行选择；
 - nth-of-type，如果并集选择器中有nth-of-type，则优先根据并集选择器中的其他选择器进行筛选，然后语句html标签名称进行分组，最后每一组再依据(n)进行选择。
+
+#### 2.2.3 伪元素选择器（重点）
+
+伪元素选择器可以帮助我们利用CSS创建新标签元素，而不需要HTML标签，从而简化HTML结构。
+
+::before
+
+::after
+
+注意：
+
+- before和after创建一个元素，但是属于行内元素。
+- 新创建的这个元素在文档树中是找不到的，所以称为伪元素
+- before和after必须有content属性
+- 伪元素选择器和标签选择器一样，权重为1
+
+### 2.5 CSS3盒子模型
+
+CSS3中可以通过box-sizing来指定盒模型，有2个值：即可指定为content-box、border-box，这样我们计算盒子大小的方式就发生了改变。
+
+可以分为两种情况：
+
+1. box-sizing: content-box 盒子大小为width + padding + border（以前默认的）
+2. box-sizing: border-box 盒子大小为width
+
+如果盒子模型我们改为box-sizing: border-box，那padding和border就不会撑大盒子了（前提是padding和border不会超过width宽度）
+
+### 2.6 CSS3其他特性（了解）
+
+#### 2.6.1 CSS3滤镜filter
+
+filter CSS属性将模糊或颜色偏移等图形效果应用与元素。
+
+```CSS
+filter: func(); 例如：filter: blur(5px); blur模糊处理 数字越大越模糊
+```
+
+#### 2.6.2 CSS3 calc函数
+
+calc()此CSS函数让你在声明CSS属性值时执行一些计算。
+
+`+ - * /`
+
+### 2.7 CSS3过渡（重点）
+
+过渡动画：是从一个状态 渐渐的过渡到另外一个状态。
+
+**我们现在经常和:hover一起搭配使用。**
+
+语法：
+
+```CSS
+transition: 要过渡的属性 花费的时间 运动曲线 何时开始;
+```
+
+1. 属性：想要变化的CSS属性，宽度、高度、背景颜色、内外边距都可以。如果想要所有的属性都变化过渡，写一个all就可以。
+2. 花费时间：单位是秒（必须写单位）比如 0.5s
+3. 运动曲线：默认是ease（可以省略）
+4. 何时开始：单位是秒（必须写单位） 可以设置延迟触发时间，默认是0s（可以省略）
+
+**记住过渡的使用口诀：谁做过渡给谁加**
+
+如果想要写多个属性，利用逗号进行分隔。
+
+## 3. 狭义的HTML5 CSS3
+
+HTML5结构标签本身，CSS3相关样式
+
+
+
+1. 广义的HTML5是HTML5本身+CSS3+JavaScript
+2. 这个集合优势称为HTML5和朋友，通常缩写为HTML5
