@@ -106,3 +106,16 @@ Effect Hook在某种程度上实现了生命周期的功能，为组件提供了
 
 ### 6.5.3 自定义Hook
 
+通常，在多个组件之间共享逻辑时，会把共享的逻辑提取到另一个函数中。
+
+自定义Hook的特征是名称已use开头。
+
+最后需要说明的是，不同组件中使用相同的自定义Hook并不会共享State（即useState()函数的返回值），他们都是独立的，并且在同一个组件中每次调用Hook都会获取独立的State。
+
+### 6.5.4 其他Hook
+
+useContext()是一个可以获取Context和Hook，它比Class组件中的Context用法更加简单。
+
+需要注意的是，useContext()的参数是Context对象本身。
+
+**由于React Hooks便于减小代码体积和对TypeScript友好等原因，函数组件僵尸接下来一段时间的发展趋势。**
