@@ -1,0 +1,19 @@
+@baseFont: 50px;
+
+html {
+  font-size: @baseFont;
+}
+
+@border: 5px + 5;
+
+div {
+  width: 200px - 50px;
+  height: (50px + 200px) * 2;
+  border: @border solid red;
+  background-color: #666 - #444;
+}
+
+img {
+  width: (82rem / @baseFont);
+  height: (82 / 50rem);
+}
