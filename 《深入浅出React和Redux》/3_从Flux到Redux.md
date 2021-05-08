@@ -120,7 +120,18 @@ Redux中把存储state的工作抽取出来交给Redux框架本身，让reducer�
 
 ### 3.2.5 React-Redux
 
+#### 1. connect
+
 作为容器组件，要做的工作无外乎两件事：
 
 - 把Store上的状态转化为内存傻瓜组件的prop；
-- 把内存傻瓜组件中的用户动作转换为派送给Store的动作。
+- 把内层傻瓜组件中的用户动作转换为派送给Store的动作。
+
+#### 2. Provider
+
+react-redux要求store不光是一个object，而且必须包含三个函数的object：
+
+- subscribe
+- dispatch
+- getState
+
