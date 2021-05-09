@@ -86,12 +86,74 @@
       <div class="swiper-button-prev"></div>
     </div>
   </section>
+
+  <!-- 痛点学习模块 -->
+  <section class="content study_con">
+    <!-- 头部 -->
+    <div class="con-hd">
+      <h4>
+        <span class="icon"><img src="icons/i1.png"></span>
+        充电学习
+      </h4>
+      <a href="#" class="more">更多>></a>
+    </div>
+    <!-- 学习模块轮播图 -->
+    <div class="study">
+      <!-- Swiper -->
+      <div class="swiper-container study_fo">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./images/pic1.png" alt="" />
+            <h5>说低调英语，告别中式英语</h5>
+            <p>156人学习</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/pic2.png" alt="" />
+            <h5>说低调英语，告别中式英语</h5>
+            <p>156人学习</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/pic1.png" alt="" />
+            <h5>说低调英语，告别中式英语</h5>
+            <p>156人学习</p>
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/pic1.png" alt="" />
+            <h5>说低调英语，告别中式英语</h5>
+            <p>156人学习</p>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <a href="#" class="item">
+      <span class="icon"><img src="icons/home.png" alt=""></span>
+      <p>首页</p>
+    </a>
+    <a href="#" class="item">
+      <span class="icon"><img src="icons/ms.png" alt=""></span>
+      <p>模拟面试</p>
+    </a>
+    <a href="#" class="item">
+      <span class="icon"><img src="icons/net.png" alt=""></span>
+      <p>技术面试</p>
+    </a>
+    <a href="#" class="item">
+      <span class="icon"><img src="icons/user.png" alt=""></span>
+      <p>我的</p>
+    </a>
+  </footer>
   <script src="js/flexible.js"></script>
   <script src="js/swiper.min.js"></script>
   <script>
     (function () {
-      var swiper = new Swiper(".swiper-container", {
-        slidesPerView: 3,
+      var swiper = new Swiper(".get_job_fo", {
+        slidesPerView: 2,
+        // 每个slide的间距
         spaceBetween: 30,
         centeredSlides: true,
         loop: true,
@@ -100,6 +162,14 @@
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
+      })
+    })();
+
+    // 第二个轮播图
+    (function () {
+      var swiper = new Swiper('.study_fo', {
+        slidesPerView: 2.5,
+        spaceBetween: 20
       })
     })();
   </script>
