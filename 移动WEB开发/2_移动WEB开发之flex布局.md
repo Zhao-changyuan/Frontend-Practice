@@ -33,7 +33,7 @@
 
 flex是flexible Box的缩写，意为“弹性布局”，用来为盒状模型提供最大的灵活性，**任何一个容器都可以指定为flex布局**。
 
-- 当我们为父盒子设置为flex布局以后，子元素的float、clear和verical-align属性将失效。
+- 当我们为父盒子设置为flex布局以后，子元素的float、clear和vertical-align属性将失效。
 - 伸缩布局 = 弹性布局 = 伸缩盒布局 = 弹性盒布局 = flex布局
 
 
@@ -124,7 +124,7 @@ justify-content属性定义了项目在主轴上的对齐方式
 
 - align-items适用于单行情况先，只有上对齐、下对齐、居中和拉伸
 - align-content适用于换行（多行）的情况下（单行情况下无效），可以设置过上对齐、下对齐、居中、拉伸以及平均分配剩余空间等属性值。
-- 总结就是单行赵align-items  多行找align-content
+- 总结就是单行找align-items  多行找align-content
 
 ### 3.7 flex-flow
 
@@ -178,3 +178,4 @@ background: linear-gradient(起始方向，颜色1， 颜色2， ... ...)
 **背景渐变必须添加浏览器私有前缀**。
 
 起始方向可以是：方位名词 或 度数，如果省略默认就是 top。
+
