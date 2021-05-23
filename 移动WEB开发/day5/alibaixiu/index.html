@@ -12,25 +12,30 @@
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/index.css">
   <title>Document</title>
-  <style>
-    [class^="col-"] {
-      border: 1px solid #CCC;
-    }
-
-    .container .row:nth-child(1) {
-      background-color: pink;
-    }
-  </style>
 </head>
 
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6">1</div>
-      <div class="col-lg-3 col-md-4 col-sm-6">2</div>
-      <div class="col-lg-3 col-md-4 col-sm-6">3</div>
-      <div class="col-lg-3 col-md-4 col-sm-6">4</div>
+      <header class="col-md-2">
+        <div class="logo">
+          <a href="#"><img src="images/logo.png" alt=""></a>
+        </div>
+        <div class="nav">
+          <ul>
+            <li><a href="#" class="glyphicon glyphicon-camera">生活馆</a></li>
+            <li><a href="#" class="glyphicon glyphicon-picture">自然汇</a></li>
+            <li><a href="#" class="glyphicon glyphicon-camera">生活馆</a></li>
+            <li><a href="#" class="glyphicon glyphicon-camera">生活馆</a></li>
+            <li><a href="#" class="glyphicon glyphicon-camera">生活馆</a></li>
+
+          </ul>
+        </div>
+      </header>
+      <article class="col-md-7">中间</article>
+      <aside class="col-md-3">右侧</aside>
     </div>
   </div>
 </body>
