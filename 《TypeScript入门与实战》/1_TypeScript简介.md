@@ -1,0 +1,1 @@
+TypeScript应该生成简洁、复合编写习惯并易于识别的JavaScript代码。
