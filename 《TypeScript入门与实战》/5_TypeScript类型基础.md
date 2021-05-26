@@ -29,7 +29,7 @@ bigint采用了特殊的对象数据结构来表示和存储一个整数。
 
 "unique symbol"类型的值只允许使用“Symbol()”函数或“Symbol.for()”方法的返回值进行初始化。
 
-在设计上，没有个“unique symbol”类型都是一种独立的类型。
+在设计上，每一个“unique symbol”类型都是一种独立的类型。
 
 “unique symbol”类型是symbol类型的子类型。
 
@@ -37,11 +37,11 @@ bigint采用了特殊的对象数据结构来表示和存储一个整数。
 
 TypeScript中的Nullable类型指的是值可以为undefined或null的类型。
 
-当启用了“--strictNullChecks”编译选线时，undefined值和null值不再能够赋值给不相关的类型。在该模式下，undefined值只能够赋值给undefined类型，同理null值也只能复制给null类型。
+当启用了“--strictNullChecks”编译选项时，undefined值和null值不再能够赋值给不相关的类型。在该模式下，undefined值只能够赋值给undefined类型，同理null值也只能复制给null类型。
 
 
 
-undefined值和null值运行赋值给顶端类型。
+undefined值和null值允许赋值给顶端类型。
 
 ### 5.3.7 void
 
