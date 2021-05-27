@@ -450,4 +450,129 @@ foo(0)
 
 foo.call({bar: 'hello'}, 0) */
 
-let foo: any = undefined;
+// let foo: any = undefined;
+
+/* interface ErrorConstructor {
+  new(message?: string): Error;
+} */
+
+/* interface Document {
+  getElementById(elementId: string): HTMLElement | null;
+} */
+
+/* interface A {
+  f(x: boolean): string;
+}
+
+interface B {
+  f: { (x: boolean): string };
+}
+
+interface C {
+  f: (x: boolean) => string;
+} */
+
+/* interface A {
+  f(): number;
+  f(x: boolean): boolean;
+  f(x: string, y: string): string;
+}
+ */
+
+/* interface A {
+  [prop: string]: string;
+} */
+
+/* interface A {
+  [prop: string]: number;
+
+  a: boolean;
+  b: () => number;
+  c(): number;
+} */
+
+/* interface A {
+  [prop: number]: string;
+}
+
+const obj: A = ['a', 'b', 'c']
+
+console.log(obj[0]) */
+
+/* interface A {
+  [prop: string]: 0 | 1;
+  [prop: number]: number;
+} */
+
+/* interface Foo {
+  x: string,
+  y(): string,
+}
+
+const c: Foo = {
+  x: 'hi',
+  y() { return '0'; }
+} */
+
+/* interface Foo {
+  x?: string,
+  y?(): number
+}
+
+const a: Foo = {}
+const b: Foo = {x: 'hi'}
+const c: Foo = { y() {return 0} }
+const d: Foo = {x: 'hi', y() {return 2}} */
+
+/* interface A {
+  readonly a: string;
+  readonly [prop: string]: string,
+  readonly [prop: number]: string,
+} */
+
+/* interface Shape {
+  name: string,
+}
+
+interface Style {
+  color: string,
+}
+
+interface Circle extends Shape, Style {
+  name: 'circle',
+  color: number
+} */
+
+/* interface Style {
+  draw(): {color: string}
+}
+
+interface Shape {
+  draw(): {x: number, y: number}
+}
+
+interface Circle extends Style, Shape {
+  draw(): { color: string, x: number; y: number }
+} */
+
+// type Point = { x: number; y: number }
+
+/* type StringType = string;
+
+type BooleanType = true | false;
+
+type Point = { x: number, y: number, z?: number }
+
+type Numberic = number | bigint;
+type StringOrNumber = string | Numberic; */
+
+/* type Point = {x: number, y: number}
+let a: Point = {x: 1, y: 2};
+let b: { x: number; y: number } = a; */
+
+/* type DecimalDigit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+const digit: DecimalDigit = 7; */
+
+
+
