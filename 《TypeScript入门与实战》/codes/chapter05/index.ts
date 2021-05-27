@@ -411,8 +411,43 @@ function foo(x: number | string): any {
 
 } */
 
-function f(x: any): number;
+/* function f(x: any): number;
 function f(x: string): 0 | 1;
 function f(x: any): any {}
 
-const a: 0 | 1 = f('hi')
+const a: 0 | 1 = f('hi') */
+
+/* function f(x: string): 0 | 1;
+function f(x: any): number;
+function f(x: any): any {
+
+}
+
+{
+  (x: string): 0 | 1;
+  (x: any): number,
+} */
+
+/* function f0() {
+  this.a = true;
+} */
+
+/* function foo(this: { name: string }) {
+  this.name = 'Patrick'
+
+  this.name = 0
+} */
+
+/* function add(this: void, x: number, y: number) {
+  this.name = 'Patrick '
+} */
+
+/* function foo(this: { bar: string }, baz: number) {
+  
+}
+
+foo(0)
+
+foo.call({bar: 'hello'}, 0) */
+
+let foo: any = undefined;
