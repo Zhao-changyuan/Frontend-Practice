@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 30px;
+      line-height: 30px;
+      color: #FFF;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <button>显示当前系统时间</button>
+  <div>某个时间</div>
+  <script>
+    let btn = document.querySelector('button')
+    let div = document.querySelector('div')
+
+    function getDate() {
+      let date = new Date()
+      let [year, month, dates, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getDay()];
+
+      let arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+
+      return `${year}年${month}月${dates}日 ${arr[day]}`
+    }
+
+    btn.onclick = function () {
+      div.innerText = getDate()
+    }
+  </script>
+</body>
+
+</html>
