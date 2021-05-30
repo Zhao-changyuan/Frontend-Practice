@@ -1,113 +1,125 @@
+/* 
+type K = 'x' | 'y';
+type T = number;
 
-/* function identity<T>(arg: T): T {
-  return arg
-}
+type MappedObjectType = { readonly [P in K]?: T} */
 
-const foo = identity('foo')
-const bar = identity(true)
+// type MappedObjectType = {[P in string ]: number}
 
-function assign<T, U>(target: T, source: U): T & U {
-  return target;
+// type T = {x: string, b: number, c: bigint}
+
+// type M = {[P in keyof T]: T[P]}
+
+// type OptionalT = Partial<T>;
+
+/* type T = { a?: string; readonly b: number}
+
+type K = keyof T;
+type MOT = {[P in K]: T[P]} */
+
+/* type Pick<T, K extends keyof T> = {
+  [P in K]: T[P]
 } */
 
-/* function identity<T>(arg: T): T {
-  return arg;
+/* type T = {
+  a?: string | undefined | null,
+  readonly b: number | undefined | null
 }
 
-identity<number>(1)
+type SomeOfT = Required<T> */
 
-identity<Date>(new Date()) */
+/* type HMOT<T, X> = {[P in keyof T]: T[P]}
 
-/* function f<T, U = boolean>() {}
+type T = [string, number]
 
-f<string>()
-f<string, string>() */
+type R = HMOT<T, boolean> */
 
-/* interface Point {
-  x: number;
-  y: number;
+/* type T0 = true extends boolean ? string : number;
+
+type TypeName<T> = T extends string
+  ? 'string'
+  : T extends number
+  ? 'number'
+  : T extends boolean
+  ? 'boolean'
+  : T extends undefined
+  ? 'undefined'
+  : T extends Function
+  ? 'function'
+  : 'object'; */
+
+// type Exclude<T, U> = T extends U ? never : T;
+
+/* type CT<T> = T extends string ? true : false;
+
+type T = CT<string | number>;
+
+type CT1<T> = [T] extends [string] ? true : false; */
+
+/* type CT<T> = T extends Array<infer U> ? U : never;
+
+type T = CT<Array<number>>;
+
+type ReturnType<T extends (...args: any) => any>
+  = T extends (...args: any) => infer R ? R : any; */
+
+/* type K = 'x' | 'y';
+type T = number;
+
+type R<K extends (string | number | symbol), T> = {
+  [P in K]: T;
 }
 
-function indentity<T extends Point>(x: T): T {
-  return x;
-}
+type R1 = R<K, T>
+const a: R1 = {x: 0, y: 0} */
 
-indentity({x: 0, y: 0})
-indentity({x: 0, y: 0, z: 0})
-
-indentity({x: 0}) */
-
-/* function foo<T extends number = 0 | 1>(arg: T): T {
-  return arg;
-} */
-
-/* interface Point {
-  x: number;
-  y: number;
-}
-
-function f<T extends Point>(arg: T): T {
-  return { x: 0, y: 0 };
-} */
-
-/* function f<T extends boolean>(obj: T): T {
+/* const a = { x: 0}
+function b(x: string, y: number): boolean {
   return true;
 }
 
-f<false>(false); */
+type T0 = typeof a;
+type T1 = typeof a.x;
+type T2 = typeof b; */
 
-/* function f0<T>(x: T): T {
-  return x;
-}
+/* const a: unique symbol = Symbol()
+const b: typeof a = a; */
 
-const a: string = f0('a')
-const b: number = f0(0)
-
-function f1<T>(x: T, y: T): T[] {
-  return [x, y]
+/* const username = document.getElementById('username') as HTMLInputElement
+if (username) {
+  console.log(username.value);
 } */
 
-/* function f3<T, U>(a: T[], f: (x: T) => U): U[] {
-  return a.map(f)
+// const a = 1 as unknown as number;
+
+/* let a1 = true;
+let a2 = true as const;
+
+let b1 = 'hello';
+let b2 = 'hello' as const; */
+
+/* let a1 = [0, 0];
+let a2 = [0, 0] as const; */
+
+/* let a1 = {x: 0, y: 0}
+let a2 = { x: 0, y: 0 } as const; */
+
+/* function add(x: number, y: number) {
+  return x + y;
 }
 
-const a: boolean[] = f3<number, boolean>([0, 1, 2], n => !!n); */
+const nums = [1, 2] as const;
 
-/* interface MyArray<T> extends Array<T> {
-  first: T | undefined;
-  last: T | undefined;
-} */
+const total = add(...nums); */
 
-/* type Nullable<T> = T | undefined | null; */
-
-type Container<T> = {value: T}
-const a: Container<number> = { value: 0 }
-const b: Container<string> = { value: 'b' }
-
-type Tree<T> = {
-  value: T;
-  left: Tree<T> | null;
-  right: Tree<T> | null;
-}
-
-const tree: Tree<number> = {
-  value: 0,
-  left: {
-    value: 1,
-    left: {
-      value: 3,
-      left: null,
-      right: null,
-    },
-    right: {
-      value: 4,
-      left: null,
-      right: null,
-    }
-  },
-  right: {
-    value: 2,
-    left: null,
-    right: null
+function getLength(v: string | undefined) {
+  if (!isDefined(v)) {
+    return 0;
   }
+
+  return v!.length;
+}
+
+function isDefined(value: any) {
+  return value !== undefined && value !== null;
 }
