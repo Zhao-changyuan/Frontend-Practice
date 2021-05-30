@@ -1,102 +1,126 @@
 "use strict";
-/*
-type K = 'x' | 'y';
-type T = number;
-
-type MappedObjectType = { readonly [P in K]?: T} */
-// type MappedObjectType = {[P in string ]: number}
-// type T = {x: string, b: number, c: bigint}
-// type M = {[P in keyof T]: T[P]}
-// type OptionalT = Partial<T>;
-/* type T = { a?: string; readonly b: number}
-
-type K = keyof T;
-type MOT = {[P in K]: T[P]} */
-/* type Pick<T, K extends keyof T> = {
-  [P in K]: T[P]
+/* function f(x: number[] | undefined | null) {
+  if (typeof x === 'object') {
+    x;
+  } else {
+    x;
+  }
 } */
-/* type T = {
-  a?: string | undefined | null,
-  readonly b: number | undefined | null
+/* interface FooFunction {
+  (): void;
 }
 
-type SomeOfT = Required<T> */
-/* type HMOT<T, X> = {[P in keyof T]: T[P]}
-
-type T = [string, number]
-
-type R = HMOT<T, boolean> */
-/* type T0 = true extends boolean ? string : number;
-
-type TypeName<T> = T extends string
-  ? 'string'
-  : T extends number
-  ? 'number'
-  : T extends boolean
-  ? 'boolean'
-  : T extends undefined
-  ? 'undefined'
-  : T extends Function
-  ? 'function'
-  : 'object'; */
-// type Exclude<T, U> = T extends U ? never : T;
-/* type CT<T> = T extends string ? true : false;
-
-type T = CT<string | number>;
-
-type CT1<T> = [T] extends [string] ? true : false; */
-/* type CT<T> = T extends Array<infer U> ? U : never;
-
-type T = CT<Array<number>>;
-
-type ReturnType<T extends (...args: any) => any>
-  = T extends (...args: any) => infer R ? R : any; */
-/* type K = 'x' | 'y';
-type T = number;
-
-type R<K extends (string | number | symbol), T> = {
-  [P in K]: T;
-}
-
-type R1 = R<K, T>
-const a: R1 = {x: 0, y: 0} */
-/* const a = { x: 0}
-function b(x: string, y: number): boolean {
-  return true;
-}
-
-type T0 = typeof a;
-type T1 = typeof a.x;
-type T2 = typeof b; */
-/* const a: unique symbol = Symbol()
-const b: typeof a = a; */
-/* const username = document.getElementById('username') as HTMLInputElement
-if (username) {
-  console.log(username.value);
+function f(x: FooFunction | undefined) {
+  if (typeof x === 'function') {
+    x
+  } else {
+    x
+  }
 } */
-// const a = 1 as unknown as number;
-/* let a1 = true;
-let a2 = true as const;
+/* class A {}
+class B {}
 
-let b1 = 'hello';
-let b2 = 'hello' as const; */
-/* let a1 = [0, 0];
-let a2 = [0, 0] as const; */
-/* let a1 = {x: 0, y: 0}
-let a2 = { x: 0, y: 0 } as const; */
-/* function add(x: number, y: number) {
-  return x + y;
+function f(x: A | B) {
+  if (x instanceof A) {
+    x
+  }
+} */
+/* interface A {
+  x: number;
 }
 
-const nums = [1, 2] as const;
+interface B {
+  y: string;
+}
 
-const total = add(...nums); */
-function getLength(v) {
-    if (!isDefined(v)) {
-        return 0;
+function f(x: A | B) {
+  if ('x' in x) {
+    x
+  }
+} */
+/* interface Options {
+  location?: {
+    x?: number,
+    y?: number
+  }
+}
+
+function f(options?: Options) {
+  if (options && options.location && options.location.x) {
+    const x = options.location.x;
+  }
+
+  if (options && options.location && options.location.x) {
+    options = {location: {x: 1, y: 1}}
+
+    const x = options.location.x;
+  }
+} */
+/* function f0(x: boolean | undefined | null) {
+  if (x == undefined) {
+    x
+  }
+
+  if (x === undefined) {
+    x
+  }
+
+  if (x == null) {
+    x
+  }
+} */
+/* function func(x: string | number, y: string | boolean) {
+  if (x === y) {
+    x;
+    y;
+  }
+} */
+/* type A = { a: string }
+type B = { b: string }
+
+function isTypeA(x: A | B): x is A {
+  return (x as A).a !== undefined;
+} */
+/* interface A {
+  kind: true,
+  type: 'A'
+}
+
+interface B {
+  kind: false,
+  type: 'B'
+}
+
+type T = A | B;
+
+function f(t: T) {
+  if (t.kind === true) {
+    t
+  }
+
+  if (t.type === 'A') {
+    t
+  }
+} */
+/* let x;
+
+x = true;
+x; */
+/* let x: boolean | 'x'
+x = 'x'
+
+x;
+
+x = true;
+x; */
+function assertIsBoolean(x) {
+    if (typeof x !== 'boolean') {
+        throw new TypeError('Boolean type expected.');
     }
-    return v.length;
 }
-function isDefined(value) {
-    return value !== undefined && value !== null;
+function assertTruthy(x) {
+    if (!x) {
+        throw new TypeError(`${x} should be a truthy value.`);
+    }
 }
+assertTruthy(null);
