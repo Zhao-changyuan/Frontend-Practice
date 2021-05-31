@@ -2,9 +2,8 @@
 
 
 
-class Point {
-  x: number = 0;
-  y: number = 0;
-}
 
-export type {Point}
+
+export function add(x: number, y: number) {
+  return x + y;
+}

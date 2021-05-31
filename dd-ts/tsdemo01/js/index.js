@@ -1,3 +1,3 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const p = new Point();
+// import { Observable } from 'rxjs'
+const A = {};

@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Point {
-    constructor() {
-        this.x = 0;
-        this.y = 0;
-    }
+exports.add = void 0;
+function add(x, y) {
+    return x + y;
 }
+exports.add = add;

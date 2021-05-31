@@ -1,7 +1,10 @@
 
 
 
+// import { Observable } from 'rxjs'
 
-import type {Point}from './utils'
+const A = {}
 
-const p = new Point()
+interface A {}
+
+namespace A {}

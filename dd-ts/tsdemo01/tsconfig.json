@@ -68,6 +68,6 @@
     /* Advanced Options */
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  }
-  // "files": ["b.ts"]
+  },
+  "files": ["typings.d.ts", "index.ts"]
 }
