@@ -1,22 +1,18 @@
 <template>
 <div>
-  <h2>{{msg}}</h2>
-  <Home/>
+  头部
 </div>
 </template>
 
 <script>
-import Home from './components/Home'
 
 export default {
-  components: {
-    Home
-  },
   data() {
     return {
-      msg: 'App根组件'
+
     };
-  }
+  },
+  
 }
 </script>
 <style lang="scss" scoped>
