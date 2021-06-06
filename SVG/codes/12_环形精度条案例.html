@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .text {
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <svg height="700" width="700">
+    <!-- 设置底色的圆环 -->
+    <circle cx="350" cy="350" r="300" fill="none" stroke="grey" stroke-width="40" stroke-linecap="round"></circle>
+
+    <!-- 设置进度条 -->
+    <circle class="progress" transform="rotate(-90, 350, 350)" cx="350" cy="350" r="300" fill="none" stroke="red"
+      stroke-width="40" stroke-linecap="round" stroke-dasharray="0,10000"></circle>
+
+    <!-- 设置文本 -->
+    <text class="text" x="350" y="350" font-size="200" fill="red">36</text>
+  </svg>
+
+  <script>
+    let progressDom = document.querySelector('.progress')
+    let textDom = document.querySelector('.text')
+
+    function rotateCircle(persent) {
+      // 获取svg圆环的总长度
+      let circleLength = Math.floor(2 * Math.PI * parseFloat(progressDom.getAttribute('r')))
+
+      // 计算进度环的长度
+      let value = persent * circleLength / 100;
+
+      // 红色是RGB 255,0,0
+      // 蓝色是RGB 0,191,255
+      let red = 255 + parseInt((0 - 255) / 100 * persent);
+      let green = 0 + parseInt((191 - 0) / 100 * persent);
+      let blue = 0 + parseInt((255 - 0) / 100 * persent);
+
+      // 设置stroke-dasharray和路径颜色
+      progressDom.setAttribute('stroke-dasharray', value + ',100000')
+      progressDom.setAttribute('stroke', `rgb(${red}, ${green}, ${blue})`)
+      // 设置文本内容和颜色
+      textDom.innerHTML = persent + '%'
+      textDom.setAttribute('fill', `rgb(${red}, ${green}, ${blue})`)
+    }
+
+    let num = 0
+    setInterval(() => {
+      num++
+      if (num > 100) {
+        num = 0
+      }
+
+      rotateCircle(num)
+    }, 30)
+  </script>
+</body>
+
+</html>

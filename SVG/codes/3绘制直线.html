@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .line {
+      stroke: #00BFFF;
+      stroke-width: 10px;
+      transition: all 2s;
+      /* transform: rotate(45deg); */
+      transform-origin: center;
+      animation: xuanzhuan 2s linear infinite;
+    }
+
+    @keyframes xuanzhuan {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .line:hover {
+      stroke: yellow;
+    }
+
+    .polyline {
+      stroke: pink;
+      stroke-width: 3px;
+      fill: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <svg width="400" height="400">
+    <line x1="50" y1="50" x2="350" y2="350" class="line"></line>
+    <polyline points="50,100 50,300 350,300" class="polyline"></polyline>
+  </svg>
+</body>
+
+</html>
