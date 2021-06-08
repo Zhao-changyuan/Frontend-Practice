@@ -87,3 +87,89 @@ element.innerHTML W3C标准，
 Js修改style样式操作，产生的是行内样式，CSS权重比较高。
 
 className会直接更改元素的类名，会覆盖原先的类名。
+
+### 4.5 排他思想
+
+### 4.6 自定义属性的操作
+
+- element.属性 获取内置属性值（元素本身自带的属性）
+- element.getAttribute('属性') 主要获得自定义的属性（标准）
+
+
+
+- element.setAttribute()
+- element.removeAttribute()
+
+
+
+### 4.7 H5自定义属性
+
+#### 1. 设置H5自定义属性
+
+H5规定自定属性以`data-`开头作为属性名并且赋值。
+
+#### 2. 获取H5自定义属性
+
+element.dataset.index或element.dataset['index']获取自定义属性data-index的值。
+
+如果自定义属性里面有多个`-`连接的单词，我们获取的时候采取驼峰命名法。
+
+## 5. 节点操作
+
+### 5.2 节点概述
+
+一般为节点至少拥有nodeType 节点类型、nodeName 节点名称、nodeValue节点值三个属性。
+
+- 元素节点 nodeType为1
+- 属性节点 nodeType为2
+- 文本节点 nodeType为3
+
+### 5.3 节点层级
+
+#### 1. 父级节点
+
+.parentNode，最近的一个父节点，如果指定的节点没有父节点则返回null
+
+#### 2. 子节点
+
+下面三个属性都包含文本节点。
+
+parentNode.childNodes(（标准），不常使用。
+
+.firstChild 第一个子节点
+
+.lastChild 最后一个子节点
+
+
+
+下面两个IE9以上才支持：
+
+.firstElementChild 第一个子元素节点，实际开发使用parentNode.children[0]
+
+.lastElementChild 最后一个子元素节点，实际开发使用parentNode.children[parentNode.children.length - 1]
+
+#### 3. 子元素节点
+
+parentNode.children（非标准），在实际开发中经常使用
+
+#### 4. 兄弟节点
+
+node.nextSibling
+
+返回当前元素的笑一个兄弟节点，找不到则返回null。同样，也是包含所有类型的节点（元素、文本、属性）
+
+node.previousSibling
+
+nextElementSibling
+
+previousElementSibling
+
+### 5.4 创建节点
+
+`document.createElement('tagName')`
+
+#### 1. 添加节点
+
+`node.appendChild(childNode)`
+
+`node.insertBefore(child, 指定元素)`
