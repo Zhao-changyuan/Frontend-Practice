@@ -173,3 +173,29 @@ previousElementSibling
 `node.appendChild(childNode)`
 
 `node.insertBefore(child, 指定元素)`
+
+### 5.5 删除节点
+
+`node.removeChild(child)`
+
+### 5.6 复制节点
+
+`node.cloneNode(flag)`
+
+注意：
+
+1. 如果括号参数为空或者为false，则是浅拷贝，即只克隆复制节点本身，不可隆里面的子节点。
+2. 如果括号参数为true，则是深拷贝，会复制节点本身以及里面所有的子节点。
+
+### 5.8 三种动态创建元素区别
+
+- document.write
+- element.innerHTML
+- document.createElement()
+
+区别：
+
+1. document.write是直接将内容写入页面的内容流，但是文档流执行完毕，则它会导致页面全部重绘。
+2. innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘。
+3. innerHTML创建多个元素效率更高（不要凭借字符串，采取数组形式拼接），机构稍微复杂。
+4. createElement()穿件多个元素效率稍微低一点点，但是结构更清晰。
