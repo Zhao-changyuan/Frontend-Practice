@@ -199,3 +199,55 @@ previousElementSibling
 2. innerHTML是将内容写入某个DOM节点，不会导致页面全部重绘。
 3. innerHTML创建多个元素效率更高（不要凭借字符串，采取数组形式拼接），机构稍微复杂。
 4. createElement()穿件多个元素效率稍微低一点点，但是结构更清晰。
+
+## 6.8 DOM重点核心
+
+我们获取过来的dom元素是一个对象（object），所以称为文档对象模型。
+
+### 6.1 创建
+
+document.write
+
+node.innerHTML
+
+document.createElement
+
+### 6.2 增
+
+appendChild
+
+insertBefore
+
+### 6.3 删
+
+removeChild
+
+### 6.4 改
+
+1. 修改元素属性：src、href、title等
+2. 修改普通元素内容：innerHTML、innerText
+3. 修改表单元素：value、type、disable等
+4. 修改元素样式：style、className
+
+### 6.5 查
+
+主要获取查询dom的元素
+
+1. DOM提供的API方法：getElementById、getElementsByTagName 古老的方法不太推荐
+2. H5提供的新方法：querySelector、querySelectorAll提倡
+3. 利用节点操作获取元素：父 parentNode 子children 兄 previousElementSibling nextElementSibling 提倡使用
+
+### 6.6 属性操作
+
+主要是正对自定义属性。
+
+1. setAttribute
+2. getAttribute
+3. removeAttribute
+
+### 6.7 事件操作
+
+给元素注册事件，采取 事件源.事件类型 = 事件处理程序
+
+onblur 鼠标失去焦点
+
