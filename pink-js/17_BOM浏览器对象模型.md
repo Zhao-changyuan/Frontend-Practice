@@ -42,3 +42,14 @@ DOMContentLoaded事件触发时，仅当DOM加载完成，不包括样式表，�
 
 1. 只要窗口大小发生像素变化，就会触发这个事件；
 2. 我们经常利用这个事件完成响应式布局。window.innerWidth 当前屏幕的宽度。
+
+## 3. 定时器
+
+### 3.1 setTimeout()定时器
+
+### 3.3 停止 setTimeout()定时器
+
+window.clearTimeout(timeoutID)
+
+### 3.4 setInterval() 定时器
+
