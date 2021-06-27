@@ -1,0 +1,1 @@
+(()=>{"use strict";(()=>{const o=JSON.parse('{"u":"webpackstart","C":"How to use webpack"}');console.log("Hello webpack5"),console.log(o.u,o.C),console.log("/")})()})();

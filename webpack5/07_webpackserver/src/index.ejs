@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- EJS 模板语法 -->
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <h1 onclick="showMsg()">Hello Webpack!!!!222</h1>
+  <p class="web-font">验证字体文件</p>
+  <a href="index.html">首页</a>
+  <a href="about.html">关于</a></a>
+
+  <img src="<%= require('./image/icon/cancel.png')%>" alt="">
+  <h2>测试webpack-dev-server</h2>
+  <div>罗非鱼</div>
+</body>
+</html>
