@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve",
-    "build": "webpack"
+    "build:dev": "webpack --config config/webpack.dev.conf.js",
+    "build:prod": "webpack --config config/webpack.prod.conf.js",
+    "dev": "webpack serve --config config/webpack.dev.conf.js",
+    "start": "webpack serve --config config/webpack.prod.conf.js"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -37,7 +39,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.40.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   },
   "browserslist": [
     "last 1 version",
