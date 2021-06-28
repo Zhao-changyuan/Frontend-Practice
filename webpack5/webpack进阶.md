@@ -44,3 +44,32 @@
 
 DefinePlugin中定义的变量要求是一个代码片段
 
+## 2. 自定义plugin
+
+webpack插件是一个具有apply方法的JavaScript对象。apply方法会被Webpack compiler调用，并且在整个编译生命周期都可以访问compiler对象。
+
+- 原理
+  - 通过在生命周期的钩子中挂在函数，来实现功能扩展。
+
+
+
+**生命周期：**
+
+生命周期就是整个生命过程中的关键节点
+
+**钩子：**
+
+- 钩子是提前在可能增加功能的点，埋好（预设）一个函数
+- 声明周期中的函数
+
+### 2.1 webpack 常用钩子
+
+| 钩子        | 描述                 | 类型            |
+| ----------- | -------------------- | --------------- |
+| environment | 环境准备好了         | SyncHook        |
+| compile     | 编译开始             | SyncHook        |
+| compilation | 编译结束             | SyncHook        |
+| emit        | 打包资源到output之前 | AsyncSeriesHook |
+| afterEmit   | 打包资源到output之后 | AsyncSeriesHook |
+| done        | 打包完成             | SyncHook        |
+
