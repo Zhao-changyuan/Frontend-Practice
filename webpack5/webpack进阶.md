@@ -73,3 +73,17 @@ webpack插件是一个具有apply方法的JavaScript对象。apply方法会被We
 | afterEmit   | 打包资源到output之后 | AsyncSeriesHook |
 | done        | 打包完成             | SyncHook        |
 
+## 3. 自定义loader
+
+- Loader 本质上就是一个ESM模块，它导出一个函数，在函数中对打包资源进行转换。
+
+loader机制：
+
+- 要求最终转换的结果必须是一个JS代码
+- 建议使用module.exports导出一个普通函数，否者无法通过loader-utils拿到options
+
+安装获取自定义loader参数的插件：
+
+- `yarn add -D loader-utils`
+
+## 4. 代码分离

@@ -3,6 +3,8 @@ import data from './data.json';
 import './css/main.css';
 import './css/main.less';
 
+import about from './about.md';
+
 // 以模块的方式引入图片
 import boy from './image/dt.gif';
 import homeIcon from './image/icon/label.png';
@@ -51,4 +53,8 @@ img1.src = homeIcon;
 // eslint-disable-next-line
 document.body.append(img1);
 
+// eslint-disable-next-line
 console.log('接口地址', API_BASE_URL);
+
+// eslint-disable-next-line
+console.log(about);

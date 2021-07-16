@@ -183,6 +183,23 @@ module.exports = (env, argv) => {
             filename: 'fonts/[name][ext]',
           },
         },
+
+        // markdown loader
+        {
+          test: /\.md$/i,
+          // use: './loader/markdown-loader',
+          use: [
+            'html-loader',
+            // './loader/markdown-loader',
+            {
+              loader: './loader/markdown-loader',
+              options: {
+                size: 20,
+              },
+            },
+          ],
+        },
+
       ],
     },
 
