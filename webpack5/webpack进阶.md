@@ -42,5 +42,15 @@
 
 如开发环境和生产环境的借口地址不同
 
-DefinePlugin中定义的变量要求是一个代码片段
+DefinePlugin中定义的变量要求是一个代码片段，例如：
+
+```js
+new webpack.DefinePlugin({
+  // 开发环境下的接口地址
+  // 变量后面的值，是一段代码片段
+  API_BASE_URL: JSON.stringify('http://apidev.example.com'),
+})
+```
+
+
 
