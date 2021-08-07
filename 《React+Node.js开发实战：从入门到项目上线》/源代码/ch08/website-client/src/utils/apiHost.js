@@ -1,1 +1,0 @@
-export default 'http://reactnode-api.com';
