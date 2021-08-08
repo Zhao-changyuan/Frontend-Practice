@@ -1,11 +1,8 @@
 {
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", "bower_components", "jspm_packages"],
-  // "files": ["./src/review/review.ts"],
   "compilerOptions": {
     "target": "ES2015",
     "module": "ES2015",
-    "lib": ["DOM", "ESNext"],
     "outDir": "./dist",
     "strict": true
   }
