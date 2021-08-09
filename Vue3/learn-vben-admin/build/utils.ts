@@ -3,6 +3,14 @@ import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 
+
+/**
+ * Whether to generate package preview
+ */
+export function isReportMode(): boolean {
+  return process.env.REPORT === 'true';
+}
+
 /**
  * 转换部分环境变量，如true VITE_PORT VITE_PROXY
  * @param envConf 
