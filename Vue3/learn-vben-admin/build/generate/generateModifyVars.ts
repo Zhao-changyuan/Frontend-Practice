@@ -7,7 +7,7 @@ import { resolve } from 'path'
  * less 全局变量
  * @param dark 
  */
-export function generateModifyVars(dark = false) {
+export function generateModifyVars(dark = false): Record<string, string> {
   const palettes = generateAntColors(primaryColor)
   const primary = palettes[5]
 
@@ -33,5 +33,5 @@ export function generateModifyVars(dark = false) {
     'border-radius-base': '2px',
     'link-color': primary,
     'app-content-background': '#fafafa'
-  }
+  };
 }

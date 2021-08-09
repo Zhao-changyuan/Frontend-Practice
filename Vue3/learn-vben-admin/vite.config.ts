@@ -3,6 +3,7 @@ import type { UserConfig, ConfigEnv } from 'vite'
 import { loadEnv } from 'vite'
 import { resolve } from 'path'
 
+import { generateModifyVars } from './build/generate/generateModifyVars'
 import vue from '@vitejs/plugin-vue'
 import { createProxy } from './build/vite/proxy'
 import { wrapperEnv } from './build/utils'
@@ -34,6 +35,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv
 
   const isBuild = command === 'build';
+
+  console.log(generateModifyVars())
 
   /** @type {import('vite').UserConfig} */
   return {
@@ -79,7 +82,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     css: {
       preprocessorOptions: {
-        
+        less: {
+          modifyVars: generateModifyVars(),
+        }
       }
     },
     plugins: [vue()]
