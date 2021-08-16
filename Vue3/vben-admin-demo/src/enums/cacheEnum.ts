@@ -1,0 +1,29 @@
+// token key
+export const TOKEN_KEY = 'TOKEN__';
+
+export const LOCALE_KEY = 'LOCALE__';
+
+// 用户信息 key
+export const USER_INFO_KEY = 'USER__INFO__';
+
+// 角色信息 key
+export const ROLES_KEY = 'ROLES__KEY__';
+
+// 项目配置信息
+export const PROJ_CFG_KEY = 'PROJ__CFG__KEY__';
+
+// lock info
+export const MULTIPLE_TABS_KEY = 'MULTIPLE__TABS__KEY__';
+
+export const APP_DARK_MODE_KEY = '__APP__DARK__MODE__';
+
+// 基本全局本地 kye
+export const APP_LOCAL_CACHE_KEY = 'COMMON__LOCAL__KEY__';
+
+// base global session key
+export const APP_SESSION_CACHE_KEY = 'COMMON__SESSION__KEY__';
+
+export enum CacheTypeEnum {
+  SESSION,
+  LOCAL,
+}
