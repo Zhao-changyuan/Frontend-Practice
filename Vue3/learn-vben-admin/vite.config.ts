@@ -7,6 +7,7 @@ import { generateModifyVars } from './build/generate/generateModifyVars'
 import vue from '@vitejs/plugin-vue'
 import { createProxy } from './build/vite/proxy'
 import { wrapperEnv } from './build/utils'
+import { createVitePlugins } from './build/vite/plugins'
 import { OUTPUT_DIR } from './build/constant'
 
 import pkg from './package.json'
@@ -36,7 +37,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   const isBuild = command === 'build';
 
-  console.log(generateModifyVars())
 
   /** @type {import('vite').UserConfig} */
   return {
@@ -83,11 +83,24 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: generateModifyVars(),
+          modfiyVars: generateModifyVars(),
+          javascriptEnabled: true
         }
       }
     },
-    plugins: [vue()]
+    plugins: createVitePlugins(viteEnv, isBuild),
+
+    // 预构建
+    optimizeDeps: {
+      include: [
+        '@iconify/iconify',
+        'ant-design-vue/es/locale/zh_CN',
+        'moment/dist/locale/zh-cn',
+        'ant-design-vue/es/locale/en_US',
+        'moment/dist/locale/eu',
+      ],
+      exclude: ['vue-demi'],
+    }
   }
 }
 
