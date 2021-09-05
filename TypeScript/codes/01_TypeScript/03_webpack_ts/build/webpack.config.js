@@ -1,16 +1,17 @@
 
-const path = require('path')
-const HTMLWebpackPlugin  = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
 const isProd = process.env.NODE_ENV === 'production'
 
 function resolve(dir) {
-  return path.resolve(__dirname, '..', dir)
+  return path.resolve(__dirname, '..', dir);
 }
 
-/** @type {import('webpack').Configuration} */
-const config = {
+console.log(resolve('src'))
+
+module.exports = {
   mode: isProd ? 'production' : 'development',
   entry: {
     app: './src/main.ts'
@@ -32,26 +33,23 @@ const config = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({}),
 
-    new HTMLWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: './public/index.html'
     })
   ],
 
-  // 识别模块，不用写扩展名
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', 'tsx', '.js']
   },
 
-  devtool: isProd ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
+  // devtool: isProd ? 'cheap-module-source-map' : 'cheap-module-eval-source-map',
 
   devServer: {
     host: 'localhost',
-    stats: 'errors-only', // 打包日志输出错误信息
-    port: 9527,
-    open: true
+    // stats: 'errors-only',
+    port: 8081,
+    open: true,
   }
 }
-
-module.exports = config
