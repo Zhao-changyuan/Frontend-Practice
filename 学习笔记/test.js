@@ -1,17 +1,43 @@
 
 
-function fn() {
-  a = 1;
+
+function genPromise(promise1) {
+  return new Promise(async (resolve) => {
+    promise1.then(res => {
+      resolve(res)
+    }).catch(err => {
+      resolve(err)
+    })
+  })
 }
 
-fn();
+Promise.myAll = function (...values) {
+  return Promise.all(values.map(item => (genPromise(item))))
+}
 
-var b = 10;
+let promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('5s')
+    resolve('promise1 resolve')
+  }, 5000)
+})
 
-console.log(a)
-console.log(this.a)
-console.log(global.a)
+let promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('3s')
+    resolve('promise2 resolve')
+  }, 3000)
+})
 
-console.log(b)
-console.log(this.b)
-console.log(global.b)
+let promise3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('1s')
+    reject(new Error('reject error'))
+  }, 1000)
+})
+
+Promise.myAll(promise1, promise1, promise3).then(result => {
+  console.log(result)
+}).catch(err => {
+  console.log(err)
+})

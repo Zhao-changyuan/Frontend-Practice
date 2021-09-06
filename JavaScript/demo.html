@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象、类与面向对象编程</title>
+</head>
+<body>
+<script>
+
+function Person() {}
+let person = new Person()
+
+console.log(typeof Person.prototype);
+console.log(Person.prototype);
+console.log(Person.prototype.constructor === Person);
+
+console.log(Person.prototype.__proto__ === Object.prototype);
+console.log(Person.prototype.__proto__.constructor === Object);
+console.log(Person.prototype.__proto__.__proto__ === null);
+
+console.log(Person.prototype.__proto__);
+console.log('======================');
+console.log(person instanceof Person);
+console.log(person instanceof Object);
+console.log(Person.prototype instanceof Object);
+console.log(Person.prototype.isPrototypeOf(person));
+
+</script>
+</body>
+</html>
