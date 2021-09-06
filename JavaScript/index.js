@@ -1,182 +1,177 @@
 
 
 
+/* let empty = new Object;
+console.log(typeof empty)
+console.log(empty instanceof Object)
+console.log('toString' in empty)
 
 
-/* function Person() {}
+for (let key in empty) {
+  console.log(key)
+}
+console.log(Object.getOwnPropertyDescriptor(Object.prototype, 'toString')) */
 
-Person.prototype = {
-  name: 'zhangsan',
-  age: 29,
-  job: '法外狂徒',
-  sayName() {
-    console.log(this.name)
+/* function asConstructor(f) {
+  return Object.assign(f, {
+    prototype: {'constructor': f}
+  })
+}
+
+let aClass = asConstructor(new Function)
+
+console.log(aClass)
+
+let obj = new aClass
+console.log(obj) */
+
+/* function MyObject() {}
+
+console.log(MyObject.prototype.constructor === MyObject)
+
+delete MyObject.prototype.constructor
+
+console.log(MyObject.prototype.constructor === Object) */
+
+/* let empty = {}
+
+let proto = Object.getPrototypeOf(empty)
+let props = Object.getOwnPropertyNames(empty)
+
+console.log(proto === Object.prototype)
+
+console.log(props.length)
+
+let propsInChain = Object.getOwnPropertyNames(Object.prototype)
+console.log(propsInChain)
+console.log(Object.keys(propsInChain).length)
+
+let enumerabledMembers = Object.values(propsInChain).filter(descriptor => descriptor.enumerable);
+console.log(enumerabledMembers.length) */
+
+/* function MyObject() {}
+MyObject.prototype = null;
+
+let obj = new MyObject()
+
+console.log(Object.getPrototypeOf(obj).constructor === Object) */
+
+/* function MyObject() {
+  this.showMe = function () {
+    console.log(typeof this)
   }
+
+  console.log('call in ...')
 }
 
-Object.defineProperty(Person.prototype, 'constructor', {
-  enumerable: false,
-  value: Person,
-})
+MyObject.prototype = null;
+let obj = new MyObject();
+obj.showMe()
 
-let friend = new Person()
-console.log(friend instanceof Object)
-console.log(friend instanceof Person)
+console.log(Object.getPrototypeOf(obj) === Object.prototype)
 
-console.log(friend.constructor === Person)
-console.log(friend.constructor === Object)
+Object.setPrototypeOf(obj, null)
+console.log(typeof obj)
+console.log('toString' in obj)
+console.log(obj instanceof Object)
+obj.showMe() */
 
-Person.prototype.sayHi = function () {
-  console.log('hi')
+/* function MyObject() {}
+
+function MyObjectEx() {}
+MyObjectEx.prototype = new MyObject();
+MyObjectEx.prototype.constructor = MyObjectEx;
+
+function MyObjectEx2() {}
+MyObjectEx2.prototype = new MyObjectEx()
+MyObjectEx2.prototype.constructor = MyObjectEx2;
+
+let obj = new MyObjectEx2();
+
+let proto = Object.getPrototypeOf(obj);
+while (proto) {
+  console.log('>> ' + proto.constructor);
+  proto = Object.getPrototypeOf(proto);
 }
 
-friend.sayHi() */
+console.log('>> ' + proto);
+console.log('==================================')
 
-/* function Person() { }
-Person.prototype.sayHi = function () {
-  console.log('hi')
+MyObject.prototype.aValue = 100;
+console.log(obj instanceof MyObject)
+console.log(obj.aValue)
+
+Object.setPrototypeOf(obj, {})
+console.log(obj instanceof MyObject)
+console.log(obj instanceof Object)
+console.log(typeof obj)
+console.log(obj.aValue)
+
+Object.setPrototypeOf(obj, null)
+console.log(obj instanceof Object)
+console.log(typeof obj) */
+
+/* function MyObject() {}
+
+let obj = new MyObject()
+console.log('name' in obj)
+
+MyObject.prototype.name = 'MyObject'
+console.log('name' in obj) */
+
+/* function Animal() {}
+function Mammal() {}
+function Canine() {}
+function Dog() {}
+function Cat() {}
+
+Mammal.prototype = new Animal()
+Canine.prototype = new Mammal()
+Dog.prototype = new Canine()
+Cat.prototype = new Mammal()
+
+function isAnimal(obj) {
+  return obj instanceof Animal;
 }
 
-let obj = new Person()
-obj.sayHi()
+let dog = new Dog()
+let cat =  new Cat()
+console.log(isAnimal(dog))
 
-Person.prototype = {
-  sayHi() {
-    console.log('new Hi')
+Animal.prototype.respire = function () {
+  
+}
+
+console.log('respire' in dog)
+console.log('respire' in cat) */
+
+// function MyObject() {}
+// console.log(MyObject.prototype)
+
+function newOperator(ctor) {
+  if (typeof ctor !== 'function') {
+    throw 'newOperator function the first param must be a function';
   }
+
+  console.log(newOperator.target)
+
+  let args = Array.prototype.slice.call(arguments, 1);
+
+  let obj = {};
+  Object.setPrototypeOf(obj, ctor.prototype);
+
+  let result = ctor.apply(obj, args);
+  var isObject = typeof result === 'object' && result !== null;
+  var isFunction = typeof result === 'function';
+  
+  return isObject || isFunction ? result : obj;
 }
 
-let obj2 = new Person()
-
-
-obj.sayHi()
-obj2.sayHi() */
-
-/* function SuperType() {
-  this.property = true;
-}
-
-SuperType.prototype.getSuperValue = function () {
-  return this.property;
-}
-
-function SubType() {
-  this.subproperty = false;
-}
-
-SubType.prototype = new SuperType();
-SubType.prototype.getSubValue = function () {
-  return this.subproperty;
-}
-
-let instance = new SubType();
-console.log(instance.getSuperValue())
-
-console.log(instance instanceof Object)
-console.log(instance instanceof SubType)
-console.log(instance instanceof SuperType) */
-
-/* function SuperType() {
-  this.property = true;
-}
-
-SuperType.prototype.getSuperValue = function () {
-  return this.property;
-}
-
-function SubType() {
-  this.subproperty = false;
-}
-
-SubType.prototype = new SuperType();
-
-SubType.prototype.getSuperValue = function () {
-  return this.subproperty;
-}
-
-SubType.prototype.getSuperValue = function () {
-  return false;
-}
-
-let instance = new SubType();
-console.log(instance.getSuperValue()) */
-
-/* function SuperType() {
-  this.colors = ['red', 'blue', 'green']
-}
-
-function SubType() {
-}
-
-SubType.prototype = new SuperType();
-
-let instance1 = new SubType();
-instance1.colors.push('black')
-console.log(instance1.colors)
-
-let instance2 = new SubType();
-console.log(instance2.colors) */
-
-/* function SuperType() {
-  this.colors = ['red', 'blue', 'green']
-}
-
-function SubType() {
-  SuperType.call(this);
-}
-
-let instance1 = new SubType();
-instance1.colors.push('black');
-console.log(instance1.colors)
-
-let instance2 = new SubType();
-console.log(instance2.colors) */
-
-/* function SuperType(name) {
+function MyObject(name, age, gender) {
   this.name = name;
-  this.colors = ['red', 'blue', 'green']
+  this.age = age;
+  this.gender = gender;
 }
 
-SuperType.prototype.sayName = function () {
-  console.log(this.name)
-}
-
-function SubType(name, age) {
-  SuperType.call(this, name)
-  this.age = age
-}
-
-SubType.prototype = new SuperType();
-
-SubType.prototype.sayAge = function () {
-  console.log(this.age)
-}
-
-let instance1 = new SubType('wangwu', 29)
-instance1.colors.push('black')
-console.log(instance1.colors)
-
-instance1.sayName()
-instance1.sayAge() */
-
-function object(o) {
-  function F() {}
-  F.prototype = o
-  return new F();
-}
-
-let person = {
-  name: '王五',
-  friends: ['李四', '王建国', '杨笠']
-}
-
-let anotherPerson = Object.create(person, {
-  name: {
-    value: 'Greg'
-  }
-})
-
-console.log(anotherPerson.name)
-
-
-
+let obj = newOperator(MyObject, '王五', 32, '男')
+console.log(obj)
