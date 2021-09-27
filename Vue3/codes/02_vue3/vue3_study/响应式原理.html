@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const user = {
+      name: '佐助',
+      age: 20,
+      wife: {
+        name: '小营',
+        age: 19
+      }
+    }
+
+    const proxyUser = new Proxy(user, {
+      get(target, property) {
+        console.log('get方法对象');
+        return Reflect.get(target, property)
+      },
+      set(target, propety, value) {
+        console.log('set方法调用');
+        return Reflect.set(target, propety, value)
+      },
+      deleteProperty(target, property) {
+        console.log('delete方法调用了');
+        return Reflect.deleteProperty(target, property)
+      }
+    });
+
+    console.log(proxyUser.name);
+    proxyUser.name = '鸣人'
+    console.log(user);
+    proxyUser.gender = '男'
+    console.log(user);
+
+    delete proxyUser.name
+    console.log(user);
+
+    proxyUser.wife.name = '莆田'
+    console.log(user);
+  </script>
+</body>
+</html>
