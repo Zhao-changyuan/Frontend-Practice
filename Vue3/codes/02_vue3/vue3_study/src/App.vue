@@ -1,83 +1,105 @@
 <template>
-  <h2>计算属性和监视</h2>
-  <fieldset>
-    <legend>姓名操作</legend>
-    姓氏：<input type="text" placeholder="请输入姓氏" v-model="user.firstName"><br>
-    名字：<input type="text" placeholder="请输入名字" v-model="user.lastName">
-  </fieldset>
-
-  <fieldset>
-    <legend>计算属性和监视的演示</legend>
-    姓名：<input type="text" placeholder="显示姓名" v-model="fullName1"><br>
-    姓名：<input type="text" placeholder="显示姓名" v-model="fullName2"><br>
-    姓名：<input type="text" placeholder="显示姓名" v-model="fullName3"><br>
-  </fieldset>
+<div class="todo-container">
+  <div class="todo-wrap">
+    <Header :addTodo="addTodo" />
+    <List :todos="todos" :deleteTodo="deleteTodo" :updateTodo="updateTodo" />
+    <Footer :todos="todos" :checkAll="checkAll" :clearAllCompletedTodos="clearAllCompletedTodos" />
+  </div>
+</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed, watch, watchEffect } from 'vue'
+import { defineComponent, ref, onMounted, toRefs, reactive, watch } from 'vue'
+import Header from './components/Header.vue'
+import List from './components/List.vue'
+import Footer from '@/components/Footer.vue'
+import { readTodos,saveTodos } from './utils/localStorageUtils'
+
+// 引入接口
+import {Todo} from './types/todo'
+
 
 export default defineComponent({
   name: 'App',
+  components: {Header, Footer, List},
   setup() {
-    const user = reactive({
-      firstName: '东方',
-      lastName: '不败'
-    })
+    // 数据应该用数组来存储，数组中的每个数据都是一个对象，对象中应该有三个属性（id title isCompleted）
+    // 把数据暂且定义在App.vue父级组件
 
-    // 通过计算属性的方式，实现第一个姓名的显示
-    // 计算属性的函数中如果值传入一个回调函数，表示的是get
-
-    // 返回的是一个Ref类型的对象
-    const fullName1 = computed(() => {
-      return user.firstName + '_' + user.lastName
-    })
-    
-    const fullName2 = computed({
-      get() {
-        return user.firstName + '_' + user.lastName
-      },
-      set(val: string) {
-        const names = val.split('_')
-        user.firstName = names[0]
-        user.lastName = names[1]
-      }
-    })
-
-    const fullName3 = ref('')
-    watch(user, ({firstName, lastName}) => {
-      fullName3.value = firstName + '_' + lastName
-    }, {
-      immediate: true, // 默认会执行一次
-      deep: true, // 深度监视
-    })
-
-    // watchEffect(() => {
-    //   fullName3.value = user.firstName + '_' + user.lastName
+    // const state = reactive<{ todos: Todo[] }>({
+    //   todos: [
+    //     {id: 1, title: '奔驰', isCompleted: false},
+    //     {id: 2, title: '宝马', isCompleted: true},
+    //     {id: 3, title: '奥迪', isCompleted: false},
+    //   ]
     // })
 
-    watchEffect(() => {
-      const names = fullName3.value.split('_')
-      user.firstName = names[0]
-      user.lastName = names[1]
+    const state = reactive<{ todos: Todo[] }>({
+      todos: []
     })
 
-    // 当我们使用watch监视非响应式数据的时候，代码可以改一下
-    watch([() => user.firstName, () => user.lastName], () => {
-      console.log('=====')
+    // 界面加载完毕后过了一会再读取数据
+    onMounted(() => {
+      setTimeout(() => {
+        state.todos = readTodos()
+      }, 1000)
     })
 
+    // 添加数据的方法
+    const addTodo = (todo: Todo) => {
+      state.todos.unshift(todo)
+    }
+
+    // 删除数据的方法
+    const deleteTodo = (index: number) => {
+      state.todos.splice(index, 1)
+    }
+
+    // 修改todo.isCompleted
+    const updateTodo = (todo: Todo, isCompleted: boolean) => {
+      todo.isCompleted = isCompleted
+      console.log(todo)
+    }
+
+    // 全选/全不选 方法
+    const checkAll = (isCompleted: boolean) => {
+      state.todos.forEach(todo => {
+        todo.isCompleted = isCompleted
+      })
+    }
+
+    // 清理所有选中的数据
+    const clearAllCompletedTodos = () => {
+      state.todos = state.todos.filter(todo => !todo.isCompleted)
+    }
+
+    // 监视操作：如果todo数组的数据变化了，直接存储到浏览器的缓存中
+    // watch(() => state.todos, (value) => {
+    //   saveTodos(value)
+    // }, {deep: true})
+    watch(() => state.todos, saveTodos, {deep: true})
 
 
     return {
-      user,
-      fullName1,
-      fullName2,
-      fullName3,
+      ...toRefs(state),
+      addTodo,
+      deleteTodo,
+      updateTodo,
+      checkAll,
+      clearAllCompletedTodos,
     }
   }
 })
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
 
+  .todo-wrap {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+}
 </style>
