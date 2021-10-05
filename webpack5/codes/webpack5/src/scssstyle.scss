@@ -1,0 +1,23 @@
+
+$width: 100px;
+$height: 100px;
+
+.box1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $width;
+  height: $height;
+  background-color: red;
+  backface-visibility: hidden;
+}
+
+.box3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $width;
+  height: $height;
+  background-color: red;
+  backface-visibility: hidden;
+}

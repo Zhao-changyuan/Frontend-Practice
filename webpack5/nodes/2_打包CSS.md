@@ -10,7 +10,7 @@
 ## 1. 打包CSS
 
 - 非JS文件打包，需要对应的loader
-  - css-loader将CSS转化为JS（将CSS输出到打包后的JS文件中）
+  - css-loader将CSS转化为JS（将CSS输出到打包后的JS文件中），处理css中的@import和url这样的外部资源
   - style-loader把包含CSS内容的JS代码，挂载到页面的`<style>`标签当中
 - 引入CSS `import './css/main.css'`
 - 安装 `npm i css-loader style-loader -D`
@@ -21,6 +21,10 @@
 Loader执行顺序：先右后左，先下后上。
 
 ## 2. 打包less
+
+sass和less都属于css预处理器，定义了一种新的语言，其基本思想是用一种专门的编程语言，为CSS增加一些编程的特性，将CSS作为目标生成文件，然后开发者使用这种语言进行CSS编码工作。
+
+
 
 - 引入less `import './css/main.less'`
 - 安装 `npm i less less-loader -D`
@@ -34,7 +38,7 @@ Loader执行顺序：先右后左，先下后上。
   - npm install mini-css-extract-plugin -D
 - 引入插件
   - `const MiniCssExtractPlugin = require('mini-css-extract-plugin')`
-- 替换style-loader`use: ['MiniCssExtractPlugin.loader', 'css-loader']`
+- 替换style-loader`use: [MiniCssExtractPlugin.loader, 'css-loader']`
   - style-loader：将CSS打包到`<style>`标签中
   - MiniCssExtractPlugin.loader：将CSS打包到独立文件中
 - 配置插件（`new MiniCssExtractPlugin({})`）
@@ -76,3 +80,4 @@ Loader执行顺序：先右后左，先下后上。
   - `const OptimizeCssAssetsWebpackPlugin = require('...')`
 - 配置
   - `new OptimizeCssAssetsWebpackPlugin()`
+
