@@ -1,4 +1,3 @@
-
 /* eslint no-unused-vars: 0  */
 let t = 'hello world'
 
@@ -11,6 +10,5 @@ console.log(process.env.NODE_ENV)
 doSomething()
 
 function doSomething() {
-  console.log('hello world!')
-  
+  console.log('hello world!', '')
 }
