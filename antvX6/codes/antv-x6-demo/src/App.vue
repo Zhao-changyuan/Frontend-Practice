@@ -3,7 +3,8 @@
     <button @click="visible = !visible">切换X6Demo显示</button>
   </div>
   <div class="wrap">
-    <X6Demo v-if="visible"></X6Demo>
+    <!-- <X6Demo v-if="visible"></X6Demo> -->
+    <ValidateConnection></ValidateConnection>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default { name: 'App' }
 
 <script setup>
 import X6Demo from './components/X6Demo/index.vue';
+import ValidateConnection from './components/ValidateConnection.vue';
 import {ref} from 'vue'
 
 const visible = ref(true)
