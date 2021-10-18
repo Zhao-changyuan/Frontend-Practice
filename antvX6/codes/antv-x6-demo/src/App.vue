@@ -4,7 +4,8 @@
   </div>
   <div class="wrap">
     <!-- <X6Demo v-if="visible"></X6Demo> -->
-    <ValidateConnection></ValidateConnection>
+    <!-- <ValidateConnection></ValidateConnection> -->
+    <Tree></Tree>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default { name: 'App' }
 <script setup>
 import X6Demo from './components/X6Demo/index.vue';
 import ValidateConnection from './components/ValidateConnection.vue';
+import Tree from './components/Tree.vue'
 import {ref} from 'vue'
 
 const visible = ref(true)
