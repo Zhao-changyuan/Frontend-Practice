@@ -28,7 +28,7 @@ class TreeNode extends Node {
 
   toggleButtonVisibility(visible) {
     this.attr('buttonGroup', {
-      display: visible ? 'block' : 'none'
+      display: visible ? 'block' : 'none',
     })
   }
 
@@ -37,12 +37,12 @@ class TreeNode extends Node {
     if (!target) {
       this.attr('buttonSign', {
         d: 'M 1 5 9 5 M 5 1 5 9',
-        strokeWidth: 1.6
+        strokeWidth: 1.6,
       })
     } else {
       this.attr('buttonSign', {
         d: 'M 2 5 8 5',
-        strokeWidth: 1.8
+        strokeWidth: 1.8,
       })
     }
 
@@ -62,27 +62,27 @@ TreeNode.config({
           tagName: 'rect',
           selector: 'button',
           attrs: {
-            'pointer-events': 'visiblePainted'
-          }
+            'pointer-events': 'visiblePainted',
+          },
         },
         {
           tagName: 'path', 
           selector: 'buttonSign',
           attrs: {
             fill: 'none',
-            'pointer-events': 'none'
-          }
-        }
-      ]
+            'pointer-events': 'none',
+          },
+        },
+      ],
     },
     {
       tagName: 'rect',
-      selector: 'body'
+      selector: 'body',
     },
     {
       tagName: 'text',
-      selector: 'label'
-    }
+      selector: 'label',
+    },
   ],
   attrs: {
     body: {
@@ -90,13 +90,13 @@ TreeNode.config({
       refHeight: '100%',
       strokeWidth: 1,
       fill: '#FFF',
-      stroke: '#a0a0a0'
+      stroke: '#a0a0a0',
     },
     label: {
       // 换行
       textWrap: {
         ellipsis: true, // 添加省略号
-        width: -10 // 减少相应宽度
+        width: -10, // 减少相应宽度
       },
       textAnchor: 'middle',
       textVerticalAnchor: 'middle',
@@ -106,7 +106,7 @@ TreeNode.config({
     },
     buttonGroup: {
       refX: '100%',
-      refY: '50%'
+      refY: '50%',
     },
     button: {
       fill: '#4c65DD',
@@ -124,9 +124,9 @@ TreeNode.config({
       refX: 5,
       refY: -5,
       stroke: '#FFF',
-      strokeWidth: 1.6
-    }
-  }
+      strokeWidth: 1.6,
+    },
+  },
 })
 
 // 定义边
@@ -144,9 +144,9 @@ TreeEdge.config({
     line:{
       stroke: '#a0a0a0',
       strokeWidth: 1,
-      targetMarker: null
-    }
-  }
+      targetMarker: null,
+    },
+  },
 })
 
 // 注册
@@ -173,10 +173,10 @@ onMounted(() => {
         name: 'er',
         args: {
           offset: 24,
-          direction: 'H'
-        }
-      }
-    }
+          direction: 'H',
+        },
+      },
+    },
   })
 
   // 添加事件
@@ -217,7 +217,7 @@ onMounted(() => {
       })
       const edges = data.edges.map((edge) => new TreeEdge({
         source: edge.source,
-        target: edge.target
+        target: edge.target,
       }))
 
       graph.value.resetCells([...nodes, ...edges])
@@ -232,7 +232,7 @@ onMounted(() => {
             })
             graph.value.zoomToFit({ padding: 24 })
           }
-        }
+        },
       })
     })
 })

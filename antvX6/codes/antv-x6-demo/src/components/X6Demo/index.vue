@@ -36,8 +36,8 @@ function initGraph() {
     connector: {
       name: 'rounded',
       args: {
-        radius: 8
-      }
+        radius: 8,
+      },
     },
     // anchor 当连接到节点时，通过 anchor 来指定被连接的节点的锚点，默认值为 center
     anchor: 'center',
@@ -59,9 +59,9 @@ function initGraph() {
             targetMarker: {
               name: 'block',
               width: 12,
-              height: 8
-            }
-          }
+              height: 8,
+            },
+          },
         },
         zIndex: 0,
       })
@@ -69,7 +69,7 @@ function initGraph() {
     // validateConnection 在移动边的时候判断连接是否有效
     validateConnection({ targetMagnet }) {
       return !!targetMagnet
-    } 
+    }, 
   }
 
   // highlighting 指定触发某种交互时的高亮样式
@@ -80,10 +80,10 @@ function initGraph() {
       args: {
         attrs: {
           fill: STROKE_COLOR,
-          stroke: STROKE_COLOR
-        }
-      }
-    }
+          stroke: STROKE_COLOR,
+        },
+      },
+    },
   }
 
   graph.value = new Graph({
@@ -140,22 +140,22 @@ function initStencil() {
     groups: [
       {
         title: '基础流程图',
-        name: 'group1'
+        name: 'group1',
       },
       {
         title: '系统设计图',
         name: 'group2',
         graphHeight: 250,
         layoutOptions: {
-          rowHeight: 70
-        }
-      }
+          rowHeight: 70,
+        },
+      },
     ],
     layoutOptions: {
       columns: 2,
       columnWidth: 80,
-      rowHeight: 55
-    }
+      rowHeight: 55,
+    },
   })
 
   stencilRef.value.appendChild(stencil.value.container)
@@ -193,13 +193,13 @@ function stencilLoadNodes() {
     attrs: {
       body: {
         rx: 20,
-        ry: 26
-      }
-    }
+        ry: 26,
+      },
+    },
   })
   const r2 = graph.value.createNode({
     shape: 'custom-rect',
-    label: '过程'
+    label: '过程',
   })
   const r3 = graph.value.createNode({
     shape: 'custom-rect',
@@ -208,30 +208,30 @@ function stencilLoadNodes() {
       body: {
         rx: 6,
         ry: 6,
-      }
-    }
+      },
+    },
   })
   const r4 = graph.value.createNode({
     shape: 'custom-polygon',
     label: '决策',
     attrs: {
       body: {
-        refPoints: '0,10 10,0 20,10 10,20'
-      }
-    }
+        refPoints: '0,10 10,0 20,10 10,20',
+      },
+    },
   })
   const r5 = graph.value.createNode({
     shape: 'custom-polygon',
     label: '数据',
     attrs: {
       body: {
-        refPoints: '10,0 40,0 30,20 0,20'
-      }
-    }
+        refPoints: '10,0 40,0 30,20 0,20',
+      },
+    },
   })
   const r6 = graph.value.createNode({
     shape: 'custom-circle',
-    label: '连接'
+    label: '连接',
   })
 
   stencil.value.load([r1, r2, r3 ,r4, r5, r6], 'group1')
@@ -242,9 +242,9 @@ function stencilLoadNodes() {
     label: 'Client',
     attrs: {
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/687b6cb9-4b97-42a6-96d0-34b3099133ac.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/687b6cb9-4b97-42a6-96d0-34b3099133ac.svg',
+      },
+    },
   })
   const m2 = graph.value.createNode({
     shape: 'custom-image',
@@ -252,12 +252,12 @@ function stencilLoadNodes() {
     attrs: {
       body: {
         stroke: '#2CB9FF',
-        fill: '#2CB9FF'
+        fill: '#2CB9FF',
       },
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/dc1ced06-417d-466f-927b-b4a4d3265791.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/dc1ced06-417d-466f-927b-b4a4d3265791.svg',
+      },
+    },
   })
   const m3 = graph.value.createNode({
     shape: 'custom-image',
@@ -268,9 +268,9 @@ function stencilLoadNodes() {
         fill: '#5AB0BE',
       },
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/c55d7ae1-8d20-4585-bd8f-ca23653a4489.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/c55d7ae1-8d20-4585-bd8f-ca23653a4489.svg',
+      },
+    },
   })
   const m4 = graph.value.createNode({
     shape: 'custom-image',
@@ -281,9 +281,9 @@ function stencilLoadNodes() {
         fill: '#E6475B',
       },
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/6eb71764-18ed-4149-b868-53ad1542c405.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/6eb71764-18ed-4149-b868-53ad1542c405.svg',
+      },
+    },
   })
   const m5 = graph.value.createNode({
     shape: 'custom-image',
@@ -294,9 +294,9 @@ function stencilLoadNodes() {
         fill: '#DA2625',
       },
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/c36fe7cb-dc24-4854-aeb5-88d8dc36d52e.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/c36fe7cb-dc24-4854-aeb5-88d8dc36d52e.svg',
+      },
+    },
   })
   const m6 = graph.value.createNode({
     shape: 'custom-image',
@@ -307,9 +307,9 @@ function stencilLoadNodes() {
         fill: '#FFB15f',
       },
       image: {
-        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/2010ac9f-40e7-49d4-8c4a-4fcf2f83033b.svg'
-      }
-    }
+        'xlink:href': 'https://gw.alipayobjects.com/zos/bmw-prod/2010ac9f-40e7-49d4-8c4a-4fcf2f83033b.svg',
+      },
+    },
   })
 
   stencil.value.load([m1, m2, m3, m4, m5, m6], 'group2')

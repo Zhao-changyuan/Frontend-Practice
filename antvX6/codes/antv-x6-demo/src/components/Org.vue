@@ -24,20 +24,20 @@ Graph.registerNode(
     markup: [
       {
         tagName: 'rect',
-        selector: 'body'
+        selector: 'body',
       },
       {
         tagName: 'image',
-        selector: 'avatar'
+        selector: 'avatar',
       },
       {
         tagName: 'text',
-        selector: 'rank'
+        selector: 'rank',
       },
       {
         tagName: 'text',
-        selector: 'name'
-      }
+        selector: 'name',
+      },
     ],
     // attrs选项是一个复杂对象，该对象的Key是节点中SVG元素的选择器（Selector），
     // 对应的值是应用到该SVG袁术的SVG属性值（如fill何stroke).
@@ -72,11 +72,11 @@ Graph.registerNode(
         fontFamily: 'Courier New',
         fontSize: 14,
         fontWeight: '800',
-        textAnchor: 'end'
-      }
-    }
+        textAnchor: 'end',
+      },
+    },
   },
-  true
+  true,
 )
 
 // 注册自定义边
@@ -92,10 +92,10 @@ Graph.registerEdge(
         stroke: '#4b4a67',
         sourceMarker: null,
         targetMarker: null,
-      }
-    }
+      },
+    },
   },
-  true
+  true,
 )
 
 /**
@@ -117,7 +117,7 @@ function member(x, y, rank, name, image, background, textColor = '#000') {
       },
       avatar: {
         opacity: 0.7,
-        'xlink:href': image
+        'xlink:href': image,
       },
       rank: {
         text: rank,
@@ -130,9 +130,9 @@ function member(x, y, rank, name, image, background, textColor = '#000') {
         fill: textColor,
         fontSize: 13,
         fontFamily: 'Arial',
-        letterSpacing: 0
-      }
-    }
+        letterSpacing: 0,
+      },
+    },
   })
 }
 
@@ -148,7 +148,7 @@ function link(source, target, vertices) {
     vertices,
     source: { cell: source },
     target: { cell: target },
-    shape: 'org-edge'
+    shape: 'org-edge',
   })
 }
 
@@ -161,8 +161,8 @@ onMounted(() => {
     grid: true,
     connecting: {
       // 被连接的节点的锚点，orth：正交点
-      anchor: 'orth'
-    }
+      anchor: 'orth',
+    },
   })
 
   // 创建成员

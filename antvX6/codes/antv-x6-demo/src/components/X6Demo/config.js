@@ -20,9 +20,9 @@ const portAttrs = {
     storkeWidth: 1,
     fill: '#fff',
     style: {
-      visibility: 'hidden'
-    }
-  }
+      visibility: 'hidden',
+    },
+  },
 }
 
 /**
@@ -44,13 +44,13 @@ export const ports = {
     },
     left: {
       position: 'left',
-      attrs: portAttrs
-    }
+      attrs: portAttrs,
+    },
   },
   items: [
     { group: 'top' },
     { group: 'right' },
     { group: 'bottom' },
     { group: 'left' },
-  ]
+  ],
 }

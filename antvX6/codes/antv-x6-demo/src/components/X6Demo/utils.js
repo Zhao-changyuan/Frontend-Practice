@@ -125,8 +125,8 @@ export function registerNodes() {
     },
     text: {
       fontSize: FONT_SIZE,
-      color: TEXT_COLOR
-    }
+      color: TEXT_COLOR,
+    },
   }
 
   // 自定义矩形节点
@@ -149,8 +149,8 @@ export function registerNodes() {
       items: [
         { group: 'top' },
         { group: 'bottom' },
-      ]
-    }
+      ],
+    },
   }, true)
 
   // 圆形节点
@@ -175,12 +175,12 @@ export function registerNodes() {
         selector: 'body',
       },
       {
-        tagName: 'image'
+        tagName: 'image',
       },
       {
         tagName: 'text',
-        selector: 'label'
-      }
+        selector: 'label',
+      },
     ],
     attrs: {
       body: {

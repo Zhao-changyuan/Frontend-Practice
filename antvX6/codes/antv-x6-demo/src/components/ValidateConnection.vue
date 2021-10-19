@@ -43,7 +43,7 @@ class MyShape extends Shape.Rect {
   getNewInPorts(length) {
     return Array.from({ length }, () => {
       return {
-        group: 'in'
+        group: 'in',
       }
     })
   }
@@ -68,8 +68,8 @@ class MyShape extends Shape.Rect {
         ['ports', 'items'],
         this.getOutPorts().concat(usedPorts).concat(newPorts),
         {
-          rewrite: true
-        }
+          rewrite: true,
+        },
       )
     }
 
@@ -85,17 +85,17 @@ MyShape.config({
     body: {
       fill: '#F5f5f5',
       stroke: '#d9d9d9',
-      strokeWidth: 1
-    }
+      strokeWidth: 1,
+    },
   },
   ports: {
     items: [
-      { group: 'out' }
+      { group: 'out' },
     ],
     groups: {
       in: {
         position: {
-          name: 'top'
+          name: 'top',
         },
         attrs: {
           portBody: {
@@ -103,9 +103,9 @@ MyShape.config({
             r: 6,
             stroke: '#ffa940',
             fill: '#FFF',
-            strokeWidth: 2
-          }
-        }
+            strokeWidth: 2,
+          },
+        },
       },
       out: {
         position: {
@@ -117,18 +117,18 @@ MyShape.config({
             r: 6,
             fill: '#fff',
             stroke: '#3199FF',
-            strokeWidth: 2
-          }
-        }
-      }
-    }
+            strokeWidth: 2,
+          },
+        },
+      },
+    },
   },
   portMarkup: [
     {
       tagName: 'circle',
-      selector: 'portBody'
-    }
-  ]
+      selector: 'portBody',
+    },
+  ],
 })
 
 // 高亮
@@ -136,8 +136,8 @@ const magnetAvailabilityHighlighter = {
   name: 'stroke',
   args: {
     fill: '#fff',
-    stroke: '#47c769'
-  }
+    stroke: '#47c769',
+  },
 }
 
 /**
@@ -149,7 +149,7 @@ function update(view) {
     cell.getInPorts().forEach((port) => {
       const portNode = view.findPortElem(port.id, 'portBody')
       view.unhighlight(portNode, {
-        highlight: magnetAvailabilityHighlighter
+        highlight: magnetAvailabilityHighlighter,
       })
     })
     cell.updateInPorts(graph.value)
@@ -167,10 +167,10 @@ onMounted(() => {
         args: {
           attrs: {
             fill: '#fff',
-            stroke: '#31d0c6'
-          }
-        }
-      }
+            stroke: '#31d0c6',
+          },
+        },
+      },
     },
     // connecting 全局的的连线规则
     connecting: {
@@ -183,8 +183,8 @@ onMounted(() => {
       router: {
         name: 'er',
         args: {
-          direction: 'V'
-        }
+          direction: 'V',
+        },
       },
       createEdge() {
         return new Shape.Edge({
@@ -194,10 +194,10 @@ onMounted(() => {
               strokeWidth: 1,
               targetMarker: {
                 name: 'classic',
-                size: 7
-              }
-            }
-          }
+                size: 7,
+              },
+            },
+          },
         })
       },
       validateConnection({ sourceView, targetView, targetMagnet }) {
@@ -223,19 +223,19 @@ onMounted(() => {
         }
 
         return true
-      }
-    }
+      },
+    },
   })
 
   // 添加三个节点
   graph.value.addNode(
-    new MyShape().resize(120, 40).position(200, 50).updateInPorts(graph.value)
+    new MyShape().resize(120, 40).position(200, 50).updateInPorts(graph.value),
   )
   graph.value.addNode(
-    new MyShape().resize(120, 40).position(400, 50).updateInPorts(graph.value)
+    new MyShape().resize(120, 40).position(400, 50).updateInPorts(graph.value),
   )
   graph.value.addNode(
-    new MyShape().resize(120, 40).position(300, 250).updateInPorts(graph.value)
+    new MyShape().resize(120, 40).position(300, 250).updateInPorts(graph.value),
   )
 
   // 添加事件
@@ -266,8 +266,8 @@ onMounted(() => {
         name: 'button-remove',
         args: {
           distance: -30,
-        }
-      }
+        },
+      },
     ])
   })
   graph.value.on('edge:mouseleave', ({edge}) => {
