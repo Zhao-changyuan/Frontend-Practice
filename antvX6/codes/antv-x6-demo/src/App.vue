@@ -7,7 +7,8 @@
     <!-- <ValidateConnection></ValidateConnection> -->
     <!-- <Tree></Tree> -->
     <!-- <Org></Org> -->
-    <OrgChart></OrgChart>
+    <!-- <OrgChart></OrgChart> -->
+    <PathEditor></PathEditor>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import ValidateConnection from './components/ValidateConnection.vue';
 import Tree from './components/Tree.vue'
 import Org from './components/Org.vue';
 import OrgChart from './components/OrgChart.vue';
+import PathEditor from './components/PathEditor.vue';
 import {ref} from 'vue'
 
 const visible = ref(true)
