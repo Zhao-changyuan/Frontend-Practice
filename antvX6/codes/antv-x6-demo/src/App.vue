@@ -8,7 +8,8 @@
     <!-- <Tree></Tree> -->
     <!-- <Org></Org> -->
     <!-- <OrgChart></OrgChart> -->
-    <PathEditor></PathEditor>
+    <!-- <PathEditor></PathEditor> -->
+    <ApproveFlowChart></ApproveFlowChart>
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import Tree from './components/Tree.vue'
 import Org from './components/Org.vue';
 import OrgChart from './components/OrgChart.vue';
 import PathEditor from './components/PathEditor.vue';
+import ApproveFlowChart from './components/ApproveFlowChart/index.vue'
 import {ref} from 'vue'
 
 const visible = ref(true)
