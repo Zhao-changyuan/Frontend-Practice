@@ -11,12 +11,12 @@ export const DEFAULT_FILL = '#EFF4FF'
 // 默认文本颜色
 export const TEXT_COLOR = '#262626'
 
-
 // 圆形节点宽度
 export const CIRCLE_NODE_WIDTH = 50
 
 // 矩形节点宽高
 export const RECT_NODE_WIDTH = 70
+export const APPROVE_NODE_WIDTH = 80
 export const RECT_NODE_HEIGHT = 40
 
 const commonPortAttrs = {
@@ -38,7 +38,7 @@ export const ports = {
       position: 'top',
       attrs: { ...commonPortAttrs },
     },
-    right: {
+    out: {
       position: 'right',
       attrs: { ...commonPortAttrs },
     },
@@ -46,16 +46,21 @@ export const ports = {
       position: 'bottom',
       attrs: { ...commonPortAttrs },
     },
-    left: {
+    in: {
       position: 'left',
-      attrs: { ...commonPortAttrs },
+      attrs: {
+        circle: {
+          ...commonPortAttrs.circle,
+          magnet: 'passive', // 被动连接
+        },
+      },
     },
   },
   items: [
     { group: 'top' },
-    { group: 'right' },
+    { group: 'out' },
     { group: 'bottom' },
-    { group: 'left' },
+    { group: 'in' },
   ],
 }
 

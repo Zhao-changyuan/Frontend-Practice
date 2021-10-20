@@ -1,5 +1,5 @@
 
-import { Graph } from '@antv/x6'
+import { Graph, Shape } from '@antv/x6'
 import {
   RECT_NODE_WIDTH, RECT_NODE_HEIGHT,
   DEFAULT_STROKE, DEFAULT_FILL,
@@ -10,7 +10,7 @@ import {
 
 /**
  * 绑定快捷键
- * @param {Graph} graph 
+ * @param {Graph} graph
  */
 export function bindKeys(graph) {
   if (!graph) return
@@ -39,8 +39,9 @@ export function bindKeys(graph) {
     return false
   })
 
-  //undo redo
+  // undo redo
   graph.bindKey(['meta+z', 'ctrl+z'], () => {
+    console.log('ctrl+z')
     if (graph.history.canUndo()) {
       graph.history.undo()
     }
@@ -59,9 +60,11 @@ export function bindKeys(graph) {
     if (nodes) {
       graph.select(nodes)
     }
+
+    return false
   })
 
-  //delete
+  // delete
   graph.bindKey(['backspace', 'del'], () => {
     const cells = graph.getSelectedCells()
     if (cells.length) {
@@ -86,7 +89,7 @@ export function bindKeys(graph) {
 
 /**
  * 控制链接桩显示/隐藏
- * @param {Array} ports 
+ * @param {Array} ports
  */
 export function showPorts(ports, show) {
   if (!ports || !ports.length) {
@@ -99,85 +102,177 @@ export function showPorts(ports, show) {
 }
 
 /**
+ * 获取输入锚点
+ * @returns
+ */
+function getInPorts() {
+  return this.getPortsByGroup('in')
+}
+
+/**
+ * 获取输出锚点
+ * @returns
+ */
+function getOutPorts() {
+  return this.getPortsByGroup('out')
+}
+
+/**
+ * 获取已使用的输入锚点
+ * @param {Graph} graph
+ * @returns
+ */
+function getUsedInPorts(graph) {
+  const incomingEdges = graph.getIncomingEdges(this) || []
+  const ports = incomingEdges.map(edge => {
+    const portId = edge.getTargetPortId()
+    return this.getPort(portId)
+  })
+
+  return ports
+}
+
+/**
+ * 获取已使用的输出锚点
+ * @param {Graph} graph
+ * @returns
+ */
+function getUsedOutPorts(graph) {
+  const outgoingEdges = graph.getOutgoingEdges(this) || []
+  const ports = outgoingEdges.map(edge => {
+    const portId = edge.getSourcePortId()
+    return this.getPort(portId)
+  })
+
+  return ports
+}
+
+/**
+ * 审批节点
+ */
+export class ApproveNode extends Shape.Rect {
+  getInPorts() {
+    return getInPorts()
+  }
+  getOutPorts() {
+    return getOutPorts()
+  }
+  getUsedInPorts(graph) {
+    return getUsedInPorts.call(this, graph)
+  }
+  getUsedOutPorts(graph) {
+    return getUsedOutPorts.call(this, graph)
+  }
+}
+
+ApproveNode.config({
+  width: RECT_NODE_WIDTH,
+  height: RECT_NODE_HEIGHT,
+  attrs: {
+    body: {
+      strokeWidth: 1,
+      stroke: DEFAULT_STROKE,
+      fill: DEFAULT_FILL,
+    },
+    label: {
+      textWrap: {
+        height: 32,
+        ellipsis: true,
+        width: -10,
+      },
+      fontSize: 12,
+      color: TEXT_COLOR,
+    },
+  },
+  ports: {
+    ...ports,
+    items: [{ group: 'in' }, { group: 'out' }],
+  },
+})
+
+/**
+ * 开始节点
+ */
+export class BeginNode extends Shape.Circle {
+  getInPorts() {
+    return getInPorts()
+  }
+  getOutPorts() {
+    return getOutPorts()
+  }
+  getUsedInPorts(graph) {
+    return getUsedInPorts.call(this, graph)
+  }
+  getUsedOutPorts(graph) {
+    return getUsedOutPorts.call(this, graph)
+  }
+}
+
+BeginNode.config({
+  width: CIRCLE_NODE_WIDTH,
+  height: CIRCLE_NODE_WIDTH,
+  attrs: {
+    body: {
+      strokeWidth: 1,
+      stroke: DEFAULT_STROKE,
+      fill: DEFAULT_FILL,
+    },
+    text: {
+      fontSize: 12,
+      color: TEXT_COLOR,
+    },
+  },
+  ports: {
+    ...ports,
+    items: [{ group: 'out' }],
+  },
+})
+
+/**
+ * 结束节点
+ */
+export class EndNode extends Shape.Circle {
+  getInPorts() {
+    return getInPorts()
+  }
+  getOutPorts() {
+    return getOutPorts()
+  }
+  getUsedInPorts(graph) {
+    return getUsedInPorts.call(this, graph)
+  }
+  getUsedOutPorts(graph) {
+    return getUsedOutPorts.call(this, graph)
+  }
+}
+
+EndNode.config({
+  width: CIRCLE_NODE_WIDTH,
+  height: CIRCLE_NODE_WIDTH,
+  attrs: {
+    body: {
+      strokeWidth: 1,
+      stroke: DEFAULT_STROKE,
+      fill: DEFAULT_FILL,
+    },
+    text: {
+      fontSize: 12,
+      color: TEXT_COLOR,
+    },
+  },
+  ports: {
+    ...ports,
+    items: [{ group: 'in' }],
+  },
+})
+/**
  * 注册节点
  * 审批节点 approve-node
  * 开始节点 begin-node
  * 归档节点 end-node
  */
 export function registerNodes() {
-
-  // 审批节点
-  Graph.registerNode(
-    'approve-node',
-    {
-      inherit: 'rect',
-      width: RECT_NODE_WIDTH,
-      height: RECT_NODE_HEIGHT,
-      attrs: {
-        body: {
-          strokeWidth: 1,
-          stroke: DEFAULT_STROKE,
-          fill: DEFAULT_FILL,
-        },
-        text: {
-          fontSize: 12,
-          color: TEXT_COLOR,
-        },
-      },
-      ports: {
-        ...ports,
-        items: [{ group: 'right' }, { group: 'left' }],
-      },
-    },
-  )
-
-  // 开始节点
-  Graph.registerNode(
-    'begin-node',
-    {
-      inherit: 'circle',
-      width: CIRCLE_NODE_WIDTH,
-      height: CIRCLE_NODE_WIDTH,
-      attrs: {
-        body: {
-          strokeWidth: 1,
-          stroke: DEFAULT_STROKE,
-          fill: DEFAULT_FILL,
-        },
-        text: {
-          fontSize: 12,
-          color: TEXT_COLOR,
-        },
-      },
-      ports: {
-        ...ports,
-        items: [{ group: 'right' }],
-      },
-    },
-  )
-
-  // 结束节点
-  Graph.registerNode(
-    'end-node',
-    {
-      inherit: 'circle',
-      width: CIRCLE_NODE_WIDTH,
-      height: CIRCLE_NODE_WIDTH,
-      attrs: {
-        body: {
-          strokeWidth: 1,
-          stroke: DEFAULT_STROKE,
-          fill: DEFAULT_FILL,
-        },
-        text: {
-          fontSize: 12,
-          color: TEXT_COLOR,
-        },
-      },
-      ports: {
-        ...ports,
-        items: [{ group: 'left' }],
-      },
-    },
-  )
+  Graph.registerNode('approve-node', ApproveNode)
+  Graph.registerNode('begin-node', BeginNode)
+  Graph.registerNode('end-node', EndNode)
 }
