@@ -1,17 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <shop-car></shop-car>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-  },
 }
+</script>
+
+<script setup>
+import ShopCar from './components/ShopCar.vue'
 </script>
 
 <style lang="scss">
