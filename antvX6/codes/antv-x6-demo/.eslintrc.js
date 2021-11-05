@@ -3,6 +3,11 @@ module.exports = {
   env: {
     node: true,
   },
+  globals: {
+    defineProps: true,
+    defineEmits: true,
+    defineExpose: true,
+  },
   'extends': [
     'plugin:vue/vue3-essential',
     'eslint:recommended',

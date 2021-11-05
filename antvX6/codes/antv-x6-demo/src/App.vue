@@ -9,7 +9,8 @@
     <!-- <Org></Org> -->
     <!-- <OrgChart></OrgChart> -->
     <!-- <PathEditor></PathEditor> -->
-    <ApproveFlowChart></ApproveFlowChart>
+    <!-- <ApproveFlowChart></ApproveFlowChart> -->
+    <IssueProgressChart v-if="visible"></IssueProgressChart>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import Org from './components/Org.vue';
 import OrgChart from './components/OrgChart.vue';
 import PathEditor from './components/PathEditor.vue';
 import ApproveFlowChart from './components/ApproveFlowChart/index.vue'
+import IssueProgressChart from './components/IssueProgressChart/index.vue'
 import {ref} from 'vue'
 
 const visible = ref(true)
