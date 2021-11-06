@@ -8,8 +8,15 @@
 export default { name: 'About' }
 </script>
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
+onMounted(() => {
+  console.log('About mounted')
+})
+
+onUnmounted(() => {
+  console.log('About unmounted')
+})
 </script>
 <style scoped>
 

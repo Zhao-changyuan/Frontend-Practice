@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link class="bg" active-class="active" to="/">首页</router-link> | 
+    <router-link class="bg" active-class="active" to="/home">首页</router-link> | 
     <router-link class="bg" to="/about">关于我们</router-link> | 
     <router-link class="bg" to="/user">个人中心</router-link> |
     <router-link to="/about" custom v-slot="{ navigate }">
@@ -10,7 +10,15 @@
   </div>
 
   <hr>
-  <router-view></router-view>
+  <div class="wrap">
+    <router-view v-slot="{Component}">
+      <transition>
+        <keep-alive exclude="About">
+          <component :is="Component"></component>
+        </keep-alive>
+      </transition>
+    </router-view>
+</div>
 </template>
 
 <style lang="scss">
@@ -40,6 +48,15 @@
     &.active {
       color: red;
     }
+  }
+}
+
+.wrap {
+  display: flex;
+  height: 200px;
+
+  > div {
+    flex: 1;
   }
 }
 </style>
