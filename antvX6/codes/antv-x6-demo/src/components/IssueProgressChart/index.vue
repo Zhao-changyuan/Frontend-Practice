@@ -27,7 +27,7 @@ function init() {
   graph.value.centerContent()
   
   graph.value.on('node:apply', ({e, node}) => {
-    console.log(node.attr('.title/text'))
+    console.l og(node.attr('.title/text'))
   })
 }
 
