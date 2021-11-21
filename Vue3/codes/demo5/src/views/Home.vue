@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <h2>单页模板中应用</h2>
-    <h2>{{count}}</h2>
+    <h2>{{count}} {{mypow}}</h2>
     <button @click="count--">-</button>
     <button @click="count++">+</button>
 
     <hr>
     <h2>使用全局状态管理</h2>
     <h2>num: {{$store.state.num}}</h2>
+    <h2>vuexpow num: {{vuexpow}}</h2>
+    <h2>vnum: {{store.getters.vxnum}}</h2>
     <button @click="store.state.num--">-</button>
     <button @click="store.state.num++">+</button>
 
@@ -38,7 +40,7 @@ export default { name: 'Home' }
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -46,7 +48,15 @@ const store = useStore()
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
-const count = ref(23)
+const count = ref(2)
+
+const mypow = computed(() => {
+  return count.value * count.value
+})
+
+const vuexpow = computed(() => {
+  return store.state.num * store.state.num;
+})
 
 function add1() {
   store.commit('add')
