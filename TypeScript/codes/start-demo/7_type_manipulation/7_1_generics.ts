@@ -80,7 +80,7 @@ getProperty(x, "m") */
   return new c();
 } */
 
-class BeeKeeper {
+/* class BeeKeeper {
   hasMask: boolean = true;
 }
 
@@ -105,7 +105,7 @@ function createInstance<A extends Animal>(c: new () => A): A {
 }
 
 createInstance(Lion).keeper.nametag;
-createInstance(Bee).keeper.hasMask;
+createInstance(Bee).keeper.hasMask; */
 
 
 

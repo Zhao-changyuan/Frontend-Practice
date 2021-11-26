@@ -1,0 +1,3 @@
+
+
+const { suqareTwo } = require('./maths')
