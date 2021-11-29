@@ -1,0 +1,300 @@
+/* @link-color: #428bca;
+@link-color-hover: darken(@link-color, 10%);
+
+a,
+.link {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-color-hover;
+}
+
+.widget {
+  color: #fff;
+  background-color: @link-color;
+} */
+/* @my-selector: banner;
+
+.@{my-selector} {
+  font-weight: bold;
+  line-height: 40px;
+  width: 300px;
+  margin: 0 auto;
+} */
+/* @images: '../img';
+
+body {
+  color: #444;
+  background: url("@{images}/banner1.png");
+} */
+/* @property: color;
+
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+} */
+/* @primary: green;
+@secondary: blue;
+
+.section {
+  @color: primary;
+
+  .element {
+    color: @@color;
+  }
+} */
+/* .lazy-eval {
+  width: @var;
+  background-color: skyblue;
+  @a: 9%;
+}
+
+@var: @a;
+@a: 100%; */
+/* .header {
+  --color: white;
+  color: var(--color);
+  --color: black;
+} */
+/* .widget {
+  padding: 20px;
+  color: #efefef;
+  border: 5px solid $color;
+} */
+/* .block {
+  color: red;
+  .inner {
+    background-color: $color;
+  }
+  color: blue;
+} */
+/* a {
+  color: blue;
+
+  &:hover {
+    color: green;
+  }
+} */
+/* .button {
+  &-ok {
+    background-color: green;
+  }
+
+  &-cancel {
+    background-color: grey;
+  }
+
+  &-custom {
+    background-color: skyblue;
+  }
+} */
+/* .link {
+  & + & {
+    color: red;
+  }
+
+  & & {
+    color: green;
+  }
+
+  &, &ish {
+    color: cyan;
+  }
+} */
+/* .header {
+  .menu {
+    border-radius: 5px;
+    .no-borderradius & {
+      background-color: pink;
+    }
+  }
+} */
+/* p, a, ul, li {
+  border-top: 1px solid #000;
+  & + & {
+    border-top: 0;
+  }
+} */
+/* nav ul {
+  &:extend(.inline);
+  background-color: blue;
+}
+
+.inline {
+  color: red;
+} */
+/* .a:extend(.b all) {}
+
+.b {
+  color: red;
+}
+
+.b.c {
+  margin: 0 auto;
+}
+
+.x.b {
+  padding: 10px;
+} */
+/* .e:extend(.f, .g) {}
+
+.f {
+  background-color: pink;
+}
+
+.g {
+  color: red;
+}
+ */
+/* div pre {
+  color: red;
+}
+
+.bucket tr {
+  margin: 12px;
+}
+
+pre:hover:extend(div pre):extend(.bucket tr) {
+  background-color: #fff;
+} */
+/* pre:hover,
+.some-class {
+  &:extend(div pre);
+  background-color: #fff;
+}
+
+div pre {
+  color: red;
+} */
+/* .bucket {
+  tr {
+    color: blue;
+  }
+}
+
+.some-class:extend(.bucket tr) {} */
+/* .bucket {
+  tr & {
+    color: blue;
+  }
+}
+.some-class:extend(tr .bucket) {} */
+/* .a.class,
+.class.a,
+.class > .a {
+  color: blue;
+}
+
+.test:extend(.class) {} */
+/* *.class {
+  color: blue;
+}
+
+.noStar:extend(.class) {} */
+/* link:hover:visited {
+  color: blue;
+}
+
+.selector:extend(link:visited:hover) {} */
+/* :nth-child(1n+3) {
+  color: blue;
+}
+.child:extend(:nth-child(n+3)) {} */
+/* [title=identifier] {
+  color: blue;
+}
+
+[title='indentifier'] {
+  color: blue;
+}
+
+[title="indentifier"] {
+  color: blue;
+}
+
+.noQuote:extend([title=identifier]) {}
+.noQuote:extend([title='identifier']) {}
+.noQuote:extend([title="identifier"]) {} */
+/* .a.b.test,
+.test.c {
+  color: orange;
+}
+.test {
+  &:hover {
+    color: green;
+  }
+}
+.replacement:extend(.test all) {} */
+/* .bucket {
+  color: blue;
+}
+@{variable}:extend(.bucket) {}
+@variable: .some-class;
+ */
+/* @media print {
+  .screenClass:extend(.selector) {}
+  .selector {
+    color: black;
+  }
+}
+.selector {
+  color: red;
+}
+
+@media print {
+  .selector {
+    color: blue;
+  }
+} */
+/* @media screen {
+  .screenClass:extend(.selector) {}
+  @media (min-width: 1023px) {
+    .selector {
+      color: blue;
+    }
+  }
+} */
+/* @media screen {
+  .selector {
+    color: blue;
+  }
+
+  @media (min-width: 1023px) {
+    .selector {
+      color: blue;
+    }
+  }
+}
+.topLevel:extend(.selector) {} */
+/* .alert-info,
+.widget {
+  color: red;
+}
+
+.alert:extend(.alert-info, .widget) {} */
+/* .animal {
+  background-color: black;
+  color: white;
+}
+
+.bear {
+  &:extend(.animal);
+  background-color: brown;
+} */
+/* .my-inline-block {
+  display: inline-block;
+  font-size: 0;;
+}
+
+.thing1 {
+  &:extend(.my-inline-block);
+}
+
+.thing2 {
+  &:extend(.my-inline-block);
+} */
+li.list > a,
+button.list-style {
+  color: red;
+}
