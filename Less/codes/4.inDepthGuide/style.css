@@ -1,0 +1,136 @@
+/* @link-color: #428bca;
+@link-color-hover: darken(@link-color, 10%);
+
+a,
+.link {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-color-hover;
+}
+
+.widget {
+  color: #fff;
+  background-color: @link-color;
+} */
+/* @my-selector: banner;
+
+.@{my-selector} {
+  font-weight: bold;
+  line-height: 40px;
+  width: 300px;
+  margin: 0 auto;
+} */
+/* @images: '../img';
+
+body {
+  color: #444;
+  background: url("@{images}/banner1.png");
+} */
+/* @property: color;
+
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+} */
+/* @primary: green;
+@secondary: blue;
+
+.section {
+  @color: primary;
+
+  .element {
+    color: @@color;
+  }
+} */
+/* .lazy-eval {
+  width: @var;
+  background-color: skyblue;
+  @a: 9%;
+}
+
+@var: @a;
+@a: 100%; */
+/* .header {
+  --color: white;
+  color: var(--color);
+  --color: black;
+} */
+/* .widget {
+  padding: 20px;
+  color: #efefef;
+  border: 5px solid $color;
+} */
+/* .block {
+  color: red;
+  .inner {
+    background-color: $color;
+  }
+  color: blue;
+} */
+/* a {
+  color: blue;
+
+  &:hover {
+    color: green;
+  }
+} */
+/* .button {
+  &-ok {
+    background-color: green;
+  }
+
+  &-cancel {
+    background-color: grey;
+  }
+
+  &-custom {
+    background-color: skyblue;
+  }
+} */
+/* .link {
+  & + & {
+    color: red;
+  }
+
+  & & {
+    color: green;
+  }
+
+  &, &ish {
+    color: cyan;
+  }
+} */
+/* .header {
+  .menu {
+    border-radius: 5px;
+    .no-borderradius & {
+      background-color: pink;
+    }
+  }
+} */
+p,
+a,
+ul,
+li {
+  border-top: 1px solid #000;
+}
+p + p,
+p + a,
+p + ul,
+p + li,
+a + p,
+a + a,
+a + ul,
+a + li,
+ul + p,
+ul + a,
+ul + ul,
+ul + li,
+li + p,
+li + a,
+li + ul,
+li + li {
+  border-top: 0;
+}
