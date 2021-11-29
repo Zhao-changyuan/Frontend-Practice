@@ -125,9 +125,26 @@ body {
   }
 } */
 
-p, a, ul, li {
+/* p, a, ul, li {
   border-top: 1px solid #000;
   & + & {
     border-top: 0;
   }
+} */
+
+/* nav ul {
+  &:extend(.inline);
+  background-color: blue;
+}
+
+.inline {
+  color: red;
+} */
+
+.a {
+  &:extend(.b)
+}
+
+.b {
+  color: red;
 }

@@ -110,27 +110,21 @@ body {
     }
   }
 } */
-p,
-a,
-ul,
-li {
+/* p, a, ul, li {
   border-top: 1px solid #000;
+  & + & {
+    border-top: 0;
+  }
+} */
+/* nav ul {
+  &:extend(.inline);
+  background-color: blue;
 }
-p + p,
-p + a,
-p + ul,
-p + li,
-a + p,
-a + a,
-a + ul,
-a + li,
-ul + p,
-ul + a,
-ul + ul,
-ul + li,
-li + p,
-li + a,
-li + ul,
-li + li {
-  border-top: 0;
+
+.inline {
+  color: red;
+} */
+.b,
+.a {
+  color: red;
 }
