@@ -1,0 +1,29 @@
+/* 
+@my-option: true;
+
+button when (@my-option) {
+  color: white;
+} */
+
+/* @my-option: true;
+
+& when(@my-option) {
+  button {
+    color: white;
+  }
+  a {
+    color: blue;
+  }
+} */
+
+@my-option: true;
+
+@dr: if(@my-option = true, {
+  button {
+    color: white;
+  }
+  a {
+    color: blue;
+  }
+});
+@dr();

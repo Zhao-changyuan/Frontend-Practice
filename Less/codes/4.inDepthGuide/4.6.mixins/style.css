@@ -231,6 +231,15 @@ div {
   background: @color[primary];
   border: 1px solid @color[secondary];
 } */
+/* #library() {
+  .colors() {
+    background: green;
+  }
+}
 .box {
-  background: green;
+  @alias: #library.colors();
+  @alias();
+} */
+.box #library.color {
+  a: b;
 }

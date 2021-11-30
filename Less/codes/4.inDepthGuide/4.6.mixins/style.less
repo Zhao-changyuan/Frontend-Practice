@@ -254,7 +254,7 @@ div {
   border: 1px solid @color[secondary];
 } */
 
-#library() {
+/* #library() {
   .colors() {
     background: green;
   }
@@ -262,4 +262,11 @@ div {
 .box {
   @alias: #library.colors();
   @alias();
+} */
+
+.box {
+  @alias: #library.color;
+  @{alias} {
+    a: b;
+  }
 }

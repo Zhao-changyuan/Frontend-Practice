@@ -1,0 +1,117 @@
+/* @detched-ruleset: { background: red; };
+
+.top {
+  @detched-ruleset();
+} */
+/* .desktop-and-old-ie(@rules) {
+  @media screen and (min-width: 1200px) {
+    @rules();
+  }
+  html.lt-ie9 & { @rules() }
+}
+
+header {
+  background-color: blue;
+
+  .desktop-and-old-ie({
+    background-color: red;
+  })
+} */
+/* @my-ruleset: {
+  .my-selector {
+    @media tv {
+      background-color: black;
+    }
+  }
+};
+
+@media(orientation: portrait) {
+  @my-ruleset();
+} */
+/* @detched-ruleset: {
+  .mixin() {
+    color: blue;
+  };
+  @color: blue;
+};
+
+.caller {
+  @detched-ruleset();
+  .mixin();
+  background-color: @color;
+} */
+/* @caller-variable: definedValue;
+
+@detched-ruleset: {
+  caller-variable: @caller-variable;
+  .caller-mixin();
+}
+
+selector {
+  @detched-ruleset();
+
+  @caller-variable: value;
+  .caller-mixin() {
+    variable: declaration;
+  }
+} */
+/* @variable: global;
+@detched-ruleset: {
+  variable: @variable;
+};
+
+selector {
+  @detched-ruleset();
+  @variable: value;
+} */
+/* @detched-1: { scope-deteched: @one @two; };
+.one {
+  @one: visible;
+  .two {
+    @detched-2: @detched-1;
+    @two: visible;
+  }
+}
+
+.use-place {
+  .one > .two();
+  @detched-2();
+} */
+/* #space {
+  .importer-1() {
+    @detched: { scope-deteched: @variable; };
+  }
+}
+
+.importer-2() {
+  @variable: value;
+  #space > .importer-1();
+}
+
+.use-place {
+  .importer-2();
+  @detched();
+} */
+/* @config: {
+  option1: false;
+  option2: false;
+}
+
+.mixin() when (@config[option1] = true) {
+  selected: value;
+}
+
+.box {
+  .mixin();
+} */
+/* @config: {
+  @colors: {
+    primary: true;
+  }
+}
+.box {
+  color: @config[@colors][primary];
+} */
+.box {
+  color: darkblue;
+}

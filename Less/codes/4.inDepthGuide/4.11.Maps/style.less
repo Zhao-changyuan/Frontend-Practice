@@ -1,0 +1,32 @@
+
+/* @sizes: {
+  mobile: 320px;
+  tablet: 768px;
+  desktop: 1024px;
+}
+
+.navbar {
+  display: block;
+
+  @media (min-width: @sizes[tablet]) {
+    display: inline-block;
+  }
+} */
+
+#library() {
+  .colors() {
+    primary: green;
+    secondary: blue;
+  }
+};
+
+#library() {
+  .colors() {
+    primary: grey;
+  }
+};
+
+.button {
+  color: #library.colors[primary];
+  border-color: #library.colors[secondary];
+}
