@@ -1,44 +1,27 @@
 <template>
   <div>
-    <transition name="no-mode-fade" mode="out-in">
-      <button v-if="on" key="on" @click="on = false">on</button>
-      <button v-else="on" key="off" @click="on = true">off</button>
-    </transition>
+    <input type="number" v-model.number="state.number" step="20">
+    <p>{{ animatedNumber }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
+import {reactive, computed, watch} from 'vue'
 
-import {ref} from 'vue'
+const state = reactive({
+  number: 0,
+  tweenedNumber: 0,
+})
 
-const on = ref(false)
+const animatedNumber = computed(() => {
+  return state.tweenedNumber.toFixed(0)
+})
+
+watch(() => state.number, (newValue) => {
+  gsap.to(state, { duration: 0.5, tweenedNumber: newValue })
+})
 
 </script>
-<style scoped>
+<style lang="less" scoped>
 
-.no-mode-fade-enter-active,
-.no-mode-fade-leave-active {
-  transition: opacity .5s;
-}
-
-.no-mode-fade-enter-from,
-.no-mode-fade-leave-to {
-  opacity: 0;
-}
-
-button {
-  background: #05ae7f;
-  border-radius: 4px;
-  display: inline-block;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
-  color: #ffffff;
-  font-family: sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
 </style>
