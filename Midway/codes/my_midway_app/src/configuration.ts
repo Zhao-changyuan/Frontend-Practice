@@ -11,5 +11,7 @@ export class ContainerLifeCycle implements ILifeCycle {
   @App()
   app: Application;
 
-  async onReady() {}
+  async onReady() {
+    this.app.use(await this.app.generateMiddleware('reportMiddleware'));
+  }
 }

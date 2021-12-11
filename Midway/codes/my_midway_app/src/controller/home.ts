@@ -33,6 +33,13 @@ export class HomeController {
   })
   async home() {
     console.log(this.app.curl);
+
+    console.log(this.ctx.session);
+
+    this.ctx.session.visited = this.ctx.session.visited
+      ? this.ctx.session.visited + 1
+      : 1;
+
     return 'Hello Midwayjs!';
   }
 
